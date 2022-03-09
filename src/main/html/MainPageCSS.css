@@ -20,13 +20,17 @@ button {
     background-color: forestgreen;
 }
 
+
+/*******************************************************************************
+                        TOP BAR
+ *******************************************************************************/
+
 .top_bar {
     display: flex;
-    justify-content: center;
     justify-content: space-between;
     background-color: forestgreen;
     align-items: center;
-;
+    margin-bottom: 2rem;;
 }
 
 .right_flex_top {
@@ -59,9 +63,14 @@ button {
     font-size: 2rem;
 }
 
+
+/*******************************************************************************
+                        HERO SECTION
+ *******************************************************************************/
+
 #hero-section {
     min-width: 100rem;
-    height:40vw;
+    height: 40vw;
     background-image: url("/Images/Nature/hero_cropped.jpg");
     background-size: 100%;
     max-height: 45rem;
@@ -72,19 +81,54 @@ button {
     font-size: 3rem;
     font-weight: normal;
 
-    position:absolute;
-    left:10rem;
-    top:8rem;
+    position: absolute;
+    left: 10rem;
+    top: 17rem;
 }
 
 #hero_button {
     background-color: forestgreen;
     position: absolute;
-    left:11rem;
-    top:17rem;
+    left: 53rem;
+    top: 25rem;
     border: none;
-    scale:150%;
-    size: 100rem;
+    scale: 150%;
 
 }
+
+
+#sort_product_heading {
+    display: flex;
+    padding-top: 10rem;
+    padding-bottom: 3rem;
+    justify-content: center;
+}
+
+/*******************************************************************************
+                        PRODUCT TYPES
+ *******************************************************************************/
+#product_types_container {
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.sweaters, .hiking_shoes, .hats, .dog_clothing {
+    margin-right: 2rem;
+    font-weight: bold;
+}
+
+
+#all_products {
+    margin-left: 58rem;
+    scale: 125%;
+    margin-bottom: 5rem;
+}
+
+
+/*******************************************************************************
+                        EXPERIENCES
+ *******************************************************************************/
 

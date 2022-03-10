@@ -2,9 +2,8 @@
 
 html {
     font-size: 62.5%;
-    background-color: rgba(164, 238, 144, 0.2);
-
     font-family: 'Karla', sans-serif;
+    background-color: whitesmoke;
 
 
 }
@@ -17,7 +16,7 @@ html {
 }
 
 button {
-    background-color: forestgreen;
+    background-color: rgba(255, 255, 0, 0.81);
 }
 
 
@@ -61,6 +60,7 @@ button {
 
 .center_bar {
     font-size: 2rem;
+    margin-left: 5rem;
 }
 
 
@@ -78,8 +78,8 @@ button {
 
 #hero-section h1 {
     color: white;
-    font-size: 3rem;
-    font-weight: normal;
+    font-size: 5rem;
+    font-weight: lighter;
 
     position: absolute;
     left: 10rem;
@@ -87,10 +87,9 @@ button {
 }
 
 #hero_button {
-    background-color: forestgreen;
     position: absolute;
     left: 53rem;
-    top: 25rem;
+    top: 31rem;
     border: none;
     scale: 150%;
 
@@ -154,4 +153,86 @@ button {
 /*******************************************************************************
                         EXPERIENCES
  *******************************************************************************/
+
+#experience_container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5rem;
+    position: relative;
+    margin-left: 7rem;
+}
+
+
+#pic1_header {
+    position: absolute;
+    top:18rem;
+    left: 3rem;
+    font-size: 2.5rem;
+    color: white;
+    outline: black;
+    font-weight: lighter;
+}
+
+.Read_more_pic1 {
+    position:absolute;
+    top: 40rem;
+    left:10rem;
+}
+
+.picture_1 {
+    position: absolute;
+}
+
+
+.picture_2 {
+    position:absolute;
+    left:52rem;
+}
+
+.Read_more_pic2 {
+    position: absolute;
+    left:10rem;
+    top:13rem;
+}
+
+#pic2_header {
+    position: absolute;
+    top:5rem;
+    left:5rem;
+    font-size: 2.5rem;
+    outline: black;
+    font-weight: lighter;
+}
+
+#pic2_overlay {
+    background-color: #2a1100;
+    opacity: 50%;
+    width:100%;
+    height:100%;
+}
+
+
+.picture_3 {
+    position: absolute;
+    left:52rem;
+    top:35rem;
+   }
+
+.Read_more_pic3 {
+    position: absolute;
+    left:10rem;
+    top:15rem;
+}
+
+#pic3_header {
+    position: absolute;
+    left:2rem;
+    top:5rem;
+    color: white;
+    font-weight: lighter;
+    font-size: 2.5rem;
+}
+
+
+
 

@@ -40,7 +40,7 @@ button {
 }
 
 .center_bar, .left_bar {
-    font-weight: bold;
+    font-weight: lighter;
 }
 
 .about_us {
@@ -155,12 +155,13 @@ button {
  *******************************************************************************/
 
 #experience_container {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5rem;
-    position: relative;
     margin-left: 7rem;
+    margin-bottom: 10rem;
 }
+
 
 
 #pic1_header {
@@ -216,6 +217,7 @@ button {
     position: absolute;
     left:52rem;
     top:35rem;
+    max-height: 10rem;
    }
 
 .Read_more_pic3 {
@@ -233,6 +235,28 @@ button {
     font-size: 2.5rem;
 }
 
+/*******************************************************************************
+                        OFFERS
+ *******************************************************************************/
 
+#offers {
+    position:relative;
+    margin-bottom: 10rem;
+}
+
+
+/*******************************************************************************
+                        BOTTOM
+ *******************************************************************************/
+
+#bottom_info {
+    display: flex;
+    justify-content: center;
+    width:100vw;
+    position:absolute;
+    margin-bottom: 2rem;
+    margin-top: 60rem;
+    background-color: forestgreen;
+}
 
 

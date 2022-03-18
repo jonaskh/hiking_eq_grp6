@@ -56,6 +56,15 @@
     height: 100%;
 }
 
+.navbar__searchbar input[type=text] {
+    float: right;
+    background-color: rgba(255, 255, 255, 0.69);
+    padding: 6px;
+    border: none;
+    margin-top: 2.5rem;
+    font-size: 16px;
+}
+
 .navbar__menu {
     display: flex;
     align-items: center;

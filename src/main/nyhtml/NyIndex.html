@@ -22,7 +22,7 @@
 <div id="nav-placeholder"></div>
 
 <section id='hero-section'>
-    <h1>Making your <br> mountaineering <br>experience better</h1>
+    <h1>Making your mountaineering <br>experience better</h1>
     <form>
         <button class = 'store_button' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
     </form>
@@ -64,7 +64,9 @@
 
 </section>
 
-<button id='all_products'>All products</button>
+<form>
+    <button class = 'all_products' formaction="../nyhtml/NyProductsOverview.html">All products</button>
+</form>
 
 
 <section id='reviews'>
@@ -82,7 +84,7 @@
 <section id='offers'>
     <!scrolling pictures>
     <h1>
-        3 hats for <br> <strong>499NOK!</strong>
+        3 hats for <br><span class = 'offer_price'>499NOK!</span>
     </h1>
     <form>
         <button class = 'offers_button' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
@@ -91,14 +93,14 @@
 </section>
 
 <section id='we_help_you'>
-
-    <h1>Contact us and we will help you pick the right equipment, <br>whether you're going skiing, hiking or fishing!
-    </h1>
-    <form>
-        <button class = 'contact_button' formaction="../nyhtml/NyProductsOverview.html">Contact us</button>
-    </form>
-
+    <div class='help_text'>
+        Contact us and we will help you pick the right equipment, <br>whether you're going skiing, hiking or fishing!
+        <form>
+            <button class = 'contact_button' formaction="../nyhtml/NyProductsOverview.html">Contact us</button>
+        </form>
+    </div>
 </section>
+
 
 <section id='experience_container'>
     <!flexbox or grid with pictures?>
@@ -136,9 +138,9 @@
 
 
 <footer>
-    <div class="footer-content">
+    <section id="footer-content">
         <p>Foolish Developer --- source code.</p>
-    </div>
+    </section>
 
 </footer>
 </html>

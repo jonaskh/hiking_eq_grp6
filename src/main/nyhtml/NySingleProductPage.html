@@ -23,8 +23,8 @@
 
     <!-- Left column containing images -->
     <div class="left-column">
-        <img data-image="Grey" class="active" src="/src/main/resources/Images/Sweaters/greySweatshirt700.jpg" alt="Grey sweater placeholder">
-        <img data-image="White" src="src/main/resources/Images/Sweaters/whiteSweatshirt700.jpg" alt="White sweater placeholder">
+        <img data-image="Grey" class="active" src="../resources/Images/Sweaters/greySweatshirt700.jpg" alt="Grey sweater placeholder">
+        <img data-image="White" src="../resources/Images/Sweaters/whiteSweatshirt700.jpg" alt="White sweater placeholder">
     </div>
 
     <!-- Right column containing color/size/price -->
@@ -82,7 +82,9 @@
 
         <div class="product-price">
             <span>800kr</span>
-            <a href="ShoppingCartIndex.html" class="cart-button">Add to cart</a>
+            <form class="cart-button">
+                <button formaction="ShoppingCartIndex.html">Add to cart</button>
+            </form>
         </div>
 
     </div>

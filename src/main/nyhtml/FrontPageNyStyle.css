@@ -19,7 +19,7 @@ button {
     top: 17rem;
 }
 
-#hero_button {
+.store_button {
     position: absolute;
     left: 53rem;
     top: 31rem;

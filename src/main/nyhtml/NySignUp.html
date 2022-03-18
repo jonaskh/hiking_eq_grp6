@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script>
+            $.get("NyNavbar.html", function(data){
+            $("#nav-placeholder").replaceWith(data);
+        } );
+        </script>
+      
+      </head>
+      <body>
+          
+          <!--Gets replaced by navbar.html-->
+          <div id="nav-placeholder"></div>
+
+          <p>Nothing here at the moment :)</p>
+      
+      
+    </body>
+</html>

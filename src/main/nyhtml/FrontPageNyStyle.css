@@ -84,6 +84,62 @@ button {
 
 
 /*******************************************************************************
+                        OFFERS
+ *******************************************************************************/
+
+#offers {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin-left: 23rem;
+    background-image: url("/Images/Hats/hat_offer_final.jpg");
+    min-height: 25rem;
+    max-width: 80rem;
+    max-height: 45rem;
+    margin-bottom: 5rem;
+}
+
+#offers h1 {
+    font-weight: lighter;
+    font-size: 4rem;
+    position: absolute;
+    left:5rem;
+    top:6rem;
+}
+
+.offers_button {
+    position: absolute;
+    left:13rem;
+    top:16rem;
+    height: 2.5rem;
+    width:10rem;
+}
+
+.offer_price {
+    font-weight: bolder;
+    font-size: 10rem;
+}
+
+
+
+/*******************************************************************************
+                        CONSULTING
+ *******************************************************************************/
+
+#we_help_you {
+    display: flex;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#we_help_you h1 {
+    font-weight: lighter;
+}
+
+
+/*******************************************************************************
                         EXPERIENCES
  *******************************************************************************/
 

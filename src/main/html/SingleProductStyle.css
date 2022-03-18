@@ -100,7 +100,9 @@ Css for color selection
     border-radius: 50%;
 }
 
-
+/**
+Input field used for javascript
+ */
 .choose-color input[type="radio"]#Grey+label {
     background-color: grey;
 }
@@ -109,8 +111,11 @@ Css for color selection
     background-color: white;
 }
 
+/**
+Border size of the checked color
+ */
 .choose-color input[type="radio"]:checked + label {
-    box-shadow: 0 0 0 2px black;
+    box-shadow: 0 0 0 0.5px black;
 }
 
 
@@ -137,7 +142,7 @@ Css for size selection
 
 .choose-size label {
     display: inline-block;
-    padding: 4px 12px;
+    padding: 6px 12px;
     cursor: pointer;
 }
 

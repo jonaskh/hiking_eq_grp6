@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>XXS Frontpage</title>
+  <link rel="stylesheet" href="ProductOverviewStyle.css">
+  <link rel="stylesheet" href="style.css">
+
+
+  <!-- Loade navbar from file and replaces div in body so we dont have to dupe code-->
+  <script src="//code.jquery.com/jquery.min.js"></script>
+  <script>
+      $.get("navbar.html", function(data){
+      $("#nav-placeholder").replaceWith(data);
+  } );
+  </script>
+
+</head>
+<body>
+    
+    <!--Gets replaced by navbar.html-->
+    <div id="nav-placeholder"></div>
+
+
+<!-- Sidebar -->
+<div class="sidenav">
+  <b>Men</b>
+  <a href="#">Jacket</a>
+  <a href="#">Sweater</a>
+  <a href="#">Pants</a>
+  <a href="#">Shoes</a>
+  <a href="#">Equipment</a>
+  <b>Women</b>
+  <a href="#">Jacket</a>
+  <a href="#">Sweater</a>
+  <a href="#">Pants</a>
+  <a href="#">Shoes</a>
+  <a href="#">Equipment</a>
+  <b>Activity</b>
+  <a href="#">Hiking</a>
+  <a href="#">Biking</a>
+  <a href="#">Climbing</a>
+  <a href="#">Relaxing</a>
+</div>
+
+<div class="searchbar">
+  <input type="text" placeholder="Search by product, activity etc..." style="width: 30rem">
+</div>
+
+<c>
+  Jackets
+</c>
+
+<section id="product_container">
+
+  <div class="card">
+    <img src="../resources/Images/Jackets/darkBlueJacket200.jpg" height="200" width="200"/>
+    <h1>Dark Blue Jacket</h1>
+    <p class="price">NOK 199</p>
+    <p>This is a cool jacket</p>
+    <p>Size: M</p>
+    <p><button>Add to Cart</button></p>
+  </div>
+
+  <div class="card">
+    <img src="../resources/Images/Jackets/darkBlueJacket200.jpg" height="200" width="200"/>
+    <h1>Dark Blue Jacket</h1>
+    <p class="price">NOK 199</p>
+    <p>This is a cool jacket</p>
+    <p>Size: L</p>
+    <p><button>Add to Cart</button></p>
+  </div>
+
+  <div class="card">
+    <img src="../resources/Images/Jackets/darkBlueJacket200.jpg" height="200" width="200"/>
+    <h1>Dark Blue Jacket</h1>
+    <p class="price">NOK 199</p>
+    <p>This is a cool jacket</p>
+    <p>Size: XS</p>
+    <p><button>Add to Cart</button></p>
+  </div>
+
+  <div class="card">
+    <img src="../resources/Images/Jackets/lightBlueJacket200.jpg" height="200" width="200"/>
+    <h1>Light Blue Jacket</h1>
+    <p class="price">NOK 199</p>
+    <p>This is another cool jacket</p>
+    <p>Size: M</p>
+    <p><button>Add to Cart</button></p>
+  </div>
+
+  <div class="card">
+    <img src="../resources/Images/Jackets/lightBlueJacket200.jpg" height="200" width="200"/>
+    <h1>Light Blue Jacket</h1>
+    <p class="price">NOK 199</p>
+    <p>This is another cool jacket</p>
+    <p>Size: S</p>
+    <p><button>Add to Cart</button></p>
+  </div>
+
+</section>
+</body>
+</html>

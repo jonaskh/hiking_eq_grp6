@@ -112,7 +112,12 @@ button {
     left:13rem;
     top:16rem;
     height: 2.5rem;
-    width:8rem;
+    width:10rem;
+}
+
+.offer_price {
+    font-weight: bolder;
+    font-size: 10rem;
 }
 
 
@@ -127,7 +132,10 @@ button {
     margin-bottom: 10rem;
     justify-content: center;
     flex-wrap: wrap;
+}
 
+#we_help_you h1 {
+    font-weight: lighter;
 }
 
 

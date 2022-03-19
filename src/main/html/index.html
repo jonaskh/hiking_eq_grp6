@@ -4,30 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <title>XXS Frontpage</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="index.css">
 
+    <!-- Loades navbar from file and replaces div in body so we dont have to dupe code-->
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script>
+        $.get("navbar.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
 
 </head>
 <body>
 
-<div class='top_bar'>
-    <! menu items >
-    <div class='left_bar'>xxs</div>
-    <div class="center_bar">because size doesn't matter</div>
-    <div class='right_flex_top'>
-        <img src='/src/main/resources/Images/shopping_cart_green.png' alt='Shopping cart'
-             style="width:20px;height:20px">
-        <div class='about_us'>About us</div>
-        <div class='Sign_in'>Sign in</div>
-        <div class='Log_in'>Log in</div>
-    </div>
-</div>
-
-Search bar
+<!--Gets replaced by navbar.html-->
+<div id="nav-placeholder"></div>
 
 <section id='hero-section'>
-    <h1>Making your <br> mountaineering <br>experience better</h1>
-    <button id='hero_button'>Store</button>
+    <h1>Making your mountaineering <br>experience better</h1>
+    <form>
+        <button class = 'store_button' formaction="../html/store.html">Our Store</button>
+    </form>
 </section>
 
 <h1 id='sort_product_heading'>Sort by product</h1>
@@ -37,27 +35,27 @@ Search bar
     <! grid or flexbox?>
 
     <div class='hiking_shoes'>
-        <img src='/src/main/resources/Images/shoes_type.jpg' alt='Hiking shoes'
+        <img src='../resources/Images/shoes_type.jpg' alt='Hiking shoes'
              style="width:150px;height:200px">
         <br> Hiking Shoes
     </div>
 
     <div class='hats'>
-        <img src='/src/main/resources/Images/Hats/Hats.jpg' alt='Hats'
+        <img src='../resources/Images/Hats/Hats.jpg' alt='Hats'
              style="width:150px;height:200px">
         <br> Hats
 
     </div>
 
     <div class='sweaters'>
-        <img src='/src/main/resources/Images/sweater_type.jpg' alt='Sweaters'
+        <img src='../resources/Images/sweater_type.jpg' alt='Sweaters'
              style="width:150px;height:200px">
         <br> Sweaters
 
     </div>
 
     <div class='dog_clothing'>
-        <img src='/src/main/resources/Images/dog_type.jpg' alt='Dog clothes'
+        <img src='../resources/Images/dog_type.jpg' alt='Dog clothes'
              style="width:150px;height:200px">
         <br> Dog clothes
 
@@ -66,7 +64,9 @@ Search bar
 
 </section>
 
-<button id='all_products'>All products</button>
+<form>
+    <button class = 'all_products' formaction="../html/store.html">All products</button>
+</form>
 
 
 <section id='reviews'>
@@ -74,25 +74,33 @@ Search bar
         "Hiking is a good way to use weekends together with your family.<br> XXS is our go-to
         place for the latest hiking gear." <br>
         -Anton Berg Hansen
-        <button class='Read more_inspiring_text'>
-            More reviews
-
-        </button>
+        <form>
+            <button class = 'reviews_button' formaction="../html/store.html">Read more</button>
+        </form>
     </div>
 </section>
 
 
 <section id='offers'>
     <!scrolling pictures>
-    <div class='hats_offers'>
-        Buy 3 hats for 500NOK!
-    </div>
-
-    <div class='dog_clothes_offers'>
-        New price 700kr!
-    </div>
+    <h1>
+        3 hats for <br><span class = 'offer_price'>499NOK!</span>
+    </h1>
+    <form>
+        <button class = 'offers_button' formaction="../html/store.html">Our Store</button>
+    </form>
 
 </section>
+
+<section id='we_help_you'>
+    <div class='help_text'>
+        Contact us and we will help you pick the right equipment, <br>whether you're going skiing, hiking or fishing!
+        <form>
+            <button class = 'contact_button' formaction="../html/store.html">Contact us</button>
+        </form>
+    </div>
+</section>
+
 
 <section id='experience_container'>
     <!flexbox or grid with pictures?>
@@ -100,42 +108,39 @@ Search bar
         <div id='overlay_pic1'></div>
         <h1 id='pic1_header'>The latest backpack from <strong>Bergans,<br>
             the Glacial! </strong></h1>
-        <img src='/src/main/resources/Images/Nature/ExperienceSection/experience1_small.jpg' alt='girl on snow'>
-        <button class='Read_more_pic1'>
-            Buy now
-        </button>
+        <img src='../resources/Images/Nature/ExperienceSection/experience1_small.jpg' alt='girl on snow'>
+        <form>
+            <button class = 'Read_more_pic1' formaction="../html/store.html">Our Store</button>
+        </form>
 
     </div>
 
     <div class='picture_2'>
-        <div id = 'pic2_overlay'></div>
+        <div id='pic2_overlay'></div>
         <h1 id='pic2_header'><strong>High quality gear </strong>from the <br>biggest brands in the industry</h1>
-        <img src='/src/main/resources/Images/Nature/ExperienceSection/experience2_big(1).jpg' alt='guy on bike'>
-        <button class='Read_more_pic2'>
-            Read more
-        </button>
+        <img src='../resources/Images/Nature/ExperienceSection/experience2_big(1).jpg' alt='guy on bike'>
+        <form>
+            <button class = 'Read_more_pic2' formaction="../html/store.html">Our Store</button>
+        </form>
 
     </div>
 
     <div class='picture_3'>
-        <h1 id='pic3_header'>Matching clothes for you <br><strong>and your dog</strong> </h1>
-        <img src='/src/main/resources/Images/Nature/ExperienceSection/dog2.jpg' alt='dog in backpack'>
-        <button class='Read_more_pic3'>
-            Store
-        </button>
-
+        <h1 id='pic3_header'>Matching clothes for you <br><strong>and your dog</strong></h1>
+        <img src='../resources/Images/Nature/ExperienceSection/dog2.jpg' alt='dog in backpack'>
+        <form>
+            <button class = 'Read_more_pic3' formaction="../html/store.html">Our Store</button>
+        </form>
     </div>
 
 </section>
-
-<section id ='bottom_info'>
-    <div class='contact_information'>
-        Contact information <br>
-        Phone: 123456789 <br>
-        Email: xxstore@yolo.com <br>
-        Address: fjellet <br>
-    </div>
-</section>
-
 </body>
+
+
+<footer>
+    <section id="footer-content">
+        <p>Foolish Developer --- source code.</p>
+    </section>
+
+</footer>
 </html>

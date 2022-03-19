@@ -2,34 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="SingleProductStyle.css">
+    <link rel="stylesheet" href="SingleProductNyStyle.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Product page</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Loades navbar from file and replaces div in body so we dont have to dupe code-->
+    <script src="//code.jquery.com/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-
-            $('.choose-color input').on('click', function() {
-                var headphonesColor = $(this).attr('data-image');
-
-                $('.active').removeClass('active');
-                $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
-                $(this).addClass('active');
-            });
-
-        });
+        $.get("NyNavbar.html", function(data){
+            $("#nav-placeholder").replaceWith(data);
+        } );
     </script>
-</head>
 
+</head>
 <body>
 
+<!--Gets replaced by navbar.html-->
+<div id="nav-placeholder"></div>
 <!-- Main class container -->
 <main class="container">
 
     <!-- Left column containing images -->
     <div class="left-column">
-        <img data-image="Grey" class="active" src="/src/main/resources/Images/Sweaters/greySweatshirt700.jpg" alt="Grey sweater placeholder">
-        <img data-image="White" src="/src/main/resources/Images/Sweaters/whiteSweatshirt700.jpg" alt="White sweater placeholder">
+        <img data-image="Grey" class="active" src="../resources/Images/Sweaters/greySweatshirt700.jpg" alt="Grey sweater placeholder">
+        <img data-image="White" src="../resources/Images/Sweaters/whiteSweatshirt700.jpg" alt="White sweater placeholder">
     </div>
+
     <!-- Right column containing color/size/price -->
     <div class="right-column">
 
@@ -39,23 +36,8 @@
             <h1> Bergans sweater</h1>
         </div>
 
-        <!--Creates the buttons for the different star ratings (WIP) -->
-        <div class="rate">
-            <input type="radio" id="star5" name="rate" value="5" />
-            <label for="star5" title="text">5 stars</label>
-            <input type="radio" id="star4" name="rate" value="4" />
-            <label for="star4" title="text">4 stars</label>
-            <input type="radio" id="star3" name="rate" value="3" />
-            <label for="star3" title="text">3 stars</label>
-            <input type="radio" id="star2" name="rate" value="2" />
-            <label for="star2" title="text">2 stars</label>
-            <input type="radio" id="star1" name="rate" value="1" />
-            <label for="star1" title="text">1 star</label>
-        </div>
-
         <!-- Contains the product options like color/size -->
         <div class="product-configuration">
-
 
             <!-- Contains the products color options -->
             <div class="product-color">
@@ -81,15 +63,15 @@
                 <div class="choose-size">
                     <div>
                         <input data-image="XS" type="radio" id="XS" name="size" value="XS" checked>
-                        <label for="XS"><span>XS</span></label>
+                        <label for="XS"><span><p>XS</p></span></label>
                     </div>
                     <div>
                         <input data-image="S" type="radio" id="S" name="size" value="S">
-                        <label for="S"><span>S</span></label>
+                        <label for="S"><span><p>S</p></span></label>
                     </div>
                     <div>
                         <input data-image="M" type="radio" id="M" name="size" value="M">
-                        <label for="M"><span>M</span></label>
+                        <label for="M"><span><p>M</p></span></label>
                     </div>
 
                 </div>

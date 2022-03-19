@@ -48,49 +48,6 @@
 }
 
 /*******************************************************************************
-                        TOP NAVIGATION BAR
- *******************************************************************************/
-
-.top_bar {
-    display: flex;
-    justify-content: space-between;
-    background-color: forestgreen;
-    align-items: center;
-    margin-bottom: 2rem;;
-}
-
-.right_flex_top {
-    display: flex;
-    font-size: 1rem;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.center_bar, .left_bar {
-    font-weight: lighter;
-}
-
-.about_us {
-    margin: 0 5px;
-}
-
-.Log_in {
-    margin: 0 5px;
-}
-
-
-.left_bar {
-    font-size: 2rem;
-
-
-}
-
-.center_bar {
-    font-size: 2rem;
-    margin-left: 5rem;
-}
-
-/*******************************************************************************
                         SIDE NAVIGATION BAR
  *******************************************************************************/
 

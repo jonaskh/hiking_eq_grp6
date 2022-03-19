@@ -1,72 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
-
-html {
-    font-size: 62.5%;
-    font-family: 'Karla', sans-serif;
-    background-color: whitesmoke;
-
-
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-}
-
 button {
     background-color: rgba(255, 255, 0, 0.81);
 }
-
-
-/*******************************************************************************
-                        TOP BAR
- *******************************************************************************/
-
-.top_bar {
-    display: flex;
-    justify-content: space-between;
-    background-color: forestgreen;
-    align-items: center;
-    margin-bottom: 2rem;;
-}
-
-.right_flex_top {
-    display: flex;
-    font-size: 1rem;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.center_bar, .left_bar {
-    font-weight: lighter;
-}
-
-.about_us {
-    margin: 0 5px;
-}
-
-.Log_in {
-    margin: 0 5px;
-}
-
-
-.left_bar {
-    font-size: 2rem;
-
-
-}
-
-.center_bar {
-    font-size: 2rem;
-    margin-left: 5rem;
-}
-
-
-/*******************************************************************************
-                        HERO SECTION
- *******************************************************************************/
 
 #hero-section {
     min-width: 100rem;
@@ -86,7 +20,7 @@ button {
     top: 17rem;
 }
 
-#hero_button {
+.store_button {
     position: absolute;
     left: 53rem;
     top: 31rem;
@@ -117,10 +51,11 @@ button {
 .sweaters, .hiking_shoes, .hats, .dog_clothing {
     margin-right: 2rem;
     font-weight: bold;
+    font-size: 1.5rem;
 }
 
 
-#all_products {
+.all_products {
     margin-left: 58rem;
     scale: 125%;
     margin-bottom: 5rem;
@@ -136,6 +71,7 @@ button {
     padding-top: 5rem;
     padding-bottom: 10rem;
 }
+
 .inspiring_text {
     font-weight: lighter;
     font-size: 3rem;
@@ -145,9 +81,75 @@ button {
 .more_inspiring_text {
     position: absolute;
     left: 85rem;
-    top:110rem;
-    scale:125%;
+    top: 110rem;
+    scale: 125%;
 }
+
+
+/*******************************************************************************
+                        OFFERS
+ *******************************************************************************/
+
+#offers {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    margin-left: 23rem;
+    background-image: url("/Images/Hats/hat_offer_final.jpg");
+    min-height: 25rem;
+    max-width: 80rem;
+    max-height: 45rem;
+    margin-bottom: 5rem;
+}
+
+#offers h1 {
+    font-weight: lighter;
+    font-size: 4rem;
+    position: absolute;
+    left: 5rem;
+    top: 6rem;
+}
+
+
+.offers_button {
+    position: absolute;
+    left: 13rem;
+    top: 16rem;
+    height: 2.5rem;
+    width: 10rem;
+}
+
+.offer_price {
+    font-weight: bolder;
+    font-size: 5rem;
+}
+
+
+/*******************************************************************************
+                        CONSULTING
+ *******************************************************************************/
+
+#we_help_you {
+    position: relative;
+    display: flex;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.help_text {
+    font-weight: lighter;
+    font-size: 3rem;
+}
+
+.contact_button {
+    position: absolute;
+    left:85rem;
+    margin-top: 2rem;
+}
+
+
 
 
 /*******************************************************************************
@@ -163,10 +165,9 @@ button {
 }
 
 
-
 #pic1_header {
     position: absolute;
-    top:18rem;
+    top: 18rem;
     left: 3rem;
     font-size: 2.5rem;
     color: white;
@@ -175,9 +176,9 @@ button {
 }
 
 .Read_more_pic1 {
-    position:absolute;
+    position: absolute;
     top: 40rem;
-    left:10rem;
+    left: 10rem;
 }
 
 .picture_1 {
@@ -186,20 +187,20 @@ button {
 
 
 .picture_2 {
-    position:absolute;
-    left:52rem;
+    position: absolute;
+    left: 52rem;
 }
 
 .Read_more_pic2 {
     position: absolute;
-    left:10rem;
-    top:13rem;
+    left: 10rem;
+    top: 13rem;
 }
 
 #pic2_header {
     position: absolute;
-    top:5rem;
-    left:5rem;
+    top: 5rem;
+    left: 5rem;
     font-size: 2.5rem;
     outline: black;
     font-weight: lighter;
@@ -208,28 +209,28 @@ button {
 #pic2_overlay {
     background-color: #2a1100;
     opacity: 50%;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
 }
 
 
 .picture_3 {
     position: absolute;
-    left:52rem;
-    top:35rem;
+    left: 52rem;
+    top: 35rem;
     max-height: 10rem;
-   }
+}
 
 .Read_more_pic3 {
     position: absolute;
-    left:10rem;
-    top:15rem;
+    left: 10rem;
+    top: 15rem;
 }
 
 #pic3_header {
     position: absolute;
-    left:2rem;
-    top:5rem;
+    left: 2rem;
+    top: 5rem;
     color: white;
     font-weight: lighter;
     font-size: 2.5rem;
@@ -240,7 +241,7 @@ button {
  *******************************************************************************/
 
 #offers {
-    position:relative;
+    position: relative;
     margin-bottom: 10rem;
 }
 
@@ -249,14 +250,22 @@ button {
                         BOTTOM
  *******************************************************************************/
 
-#bottom_info {
+#footer-content {
+    position: absolute;
+    top:250rem;
     display: flex;
+    align-items: center;
     justify-content: center;
-    width:100vw;
-    position:absolute;
-    margin-bottom: 2rem;
-    margin-top: 60rem;
+    flex-direction: column;
+    text-align: center;
     background-color: forestgreen;
+    width:100vw;
+
 }
 
-
+#footer-content p {
+    max-width: 500px;
+    margin: 10px auto;
+    line-height: 28px;
+    font-size: 2rem;
+}

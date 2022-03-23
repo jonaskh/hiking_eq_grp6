@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <title>XXS Frontpage</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="FrontPageNyStyle.css">
+    <link rel="stylesheet" href="index.css">
 
     <!-- Loades navbar from file and replaces div in body so we dont have to dupe code-->
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script>
-        $.get("NyNavbar.html", function (data) {
+        $.get("navbar.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
         });
     </script>
@@ -24,7 +24,7 @@
 <section id='hero-section'>
     <h1>Making your mountaineering <br>experience better</h1>
     <form>
-        <button class = 'store_button' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
+        <button class = 'store_button' formaction="../html_css/store.html">Our Store</button>
     </form>
 </section>
 
@@ -35,27 +35,27 @@
     <! grid or flexbox?>
 
     <div class='hiking_shoes'>
-        <img src='../resources/Images/shoes_type.jpg' alt='Hiking shoes'
+        <img src='../Images/shoes_type.jpg' alt='Hiking shoes'
              style="width:150px;height:200px">
         <br> Hiking Shoes
     </div>
 
     <div class='hats'>
-        <img src='../resources/Images/Hats/Hats.jpg' alt='Hats'
+        <img src='../Images/Hats/Hats.jpg' alt='Hats'
              style="width:150px;height:200px">
         <br> Hats
 
     </div>
 
     <div class='sweaters'>
-        <img src='../resources/Images/sweater_type.jpg' alt='Sweaters'
+        <img src='../Images/sweater_type.jpg' alt='Sweaters'
              style="width:150px;height:200px">
         <br> Sweaters
 
     </div>
 
     <div class='dog_clothing'>
-        <img src='../resources/Images/dog_type.jpg' alt='Dog clothes'
+        <img src='../Images/dog_type.jpg' alt='Dog clothes'
              style="width:150px;height:200px">
         <br> Dog clothes
 
@@ -65,7 +65,7 @@
 </section>
 
 <form>
-    <button class = 'all_products' formaction="../nyhtml/NyProductsOverview.html">All products</button>
+    <button class = 'all_products' formaction="../html_css/store.html">All products</button>
 </form>
 
 
@@ -75,7 +75,7 @@
         place for the latest hiking gear." <br>
         -Anton Berg Hansen
         <form>
-            <button class = 'reviews_button' formaction="../nyhtml/NyProductsOverview.html">Read more</button>
+            <button class = 'reviews_button' formaction="../html_css/store.html">Read more</button>
         </form>
     </div>
 </section>
@@ -87,7 +87,7 @@
         3 hats for <br><span class = 'offer_price'>499NOK!</span>
     </h1>
     <form>
-        <button class = 'offers_button' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
+        <button class = 'offers_button' formaction="../html_css/store.html">Our Store</button>
     </form>
 
 </section>
@@ -96,7 +96,7 @@
     <div class='help_text'>
         Contact us and we will help you pick the right equipment, <br>whether you're going skiing, hiking or fishing!
         <form>
-            <button class = 'contact_button' formaction="../nyhtml/NyProductsOverview.html">Contact us</button>
+            <button class = 'contact_button' formaction="../html_css/store.html">Contact us</button>
         </form>
     </div>
 </section>
@@ -108,9 +108,9 @@
         <div id='overlay_pic1'></div>
         <h1 id='pic1_header'>The latest backpack from <strong>Bergans,<br>
             the Glacial! </strong></h1>
-        <img src='../resources/Images/Nature/ExperienceSection/experience1_small.jpg' alt='girl on snow'>
+        <img src='../Images/Nature/ExperienceSection/experience1_small.jpg' alt='girl on snow'>
         <form>
-            <button class = 'Read_more_pic1' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
+            <button class = 'Read_more_pic1' formaction="../html/store.html">Our Store</button>
         </form>
 
     </div>
@@ -118,18 +118,18 @@
     <div class='picture_2'>
         <div id='pic2_overlay'></div>
         <h1 id='pic2_header'><strong>High quality gear </strong>from the <br>biggest brands in the industry</h1>
-        <img src='../resources/Images/Nature/ExperienceSection/experience2_big(1).jpg' alt='guy on bike'>
+        <img src='../Images/Nature/ExperienceSection/experience2_big(1).jpg' alt='guy on bike'>
         <form>
-            <button class = 'Read_more_pic2' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
+            <button class = 'Read_more_pic2' formaction="../html_css/store.html">Our Store</button>
         </form>
 
     </div>
 
     <div class='picture_3'>
         <h1 id='pic3_header'>Matching clothes for you <br><strong>and your dog</strong></h1>
-        <img src='../resources/Images/Nature/ExperienceSection/dog2.jpg' alt='dog in backpack'>
+        <img src='../Images/Nature/ExperienceSection/dog2.jpg' alt='dog in backpack'>
         <form>
-            <button class = 'Read_more_pic3' formaction="../nyhtml/NyProductsOverview.html">Our Store</button>
+            <button class = 'Read_more_pic3' formaction="../html_css/store.html">Our Store</button>
         </form>
     </div>
 

@@ -68,6 +68,8 @@ button {
 
 
 #reviews {
+    display: flex;
+    justify-content: center;
     padding-top: 5rem;
     padding-bottom: 10rem;
 }
@@ -75,7 +77,6 @@ button {
 .inspiring_text {
     font-weight: lighter;
     font-size: 3rem;
-    margin-left: 23rem;
 }
 
 .more_inspiring_text {

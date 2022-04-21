@@ -1,7 +1,7 @@
 package no.ntnu.hikingstore_6.controllers;
 
-import no.ntnu.hikingstore_6.models.AuthenticateRequest;
-import no.ntnu.hikingstore_6.models.AuthenticateResponse;
+import no.ntnu.hikingstore_6.security.AuthenticateRequest;
+import no.ntnu.hikingstore_6.security.AuthenticateResponse;
 import no.ntnu.hikingstore_6.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

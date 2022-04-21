@@ -1,4 +1,4 @@
-package no.ntnu.hikingstore_6.models;
+package no.ntnu.hikingstore_6.security;
 
 public class AuthenticateRequest {
 

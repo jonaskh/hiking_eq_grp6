@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.*;
 public class Controller {
 
 
-    @GetMapping("")
+    @GetMapping("/")
     public String homePage() {
 
         return "Home Page";
     }
 
-    @GetMapping("user")
+    @GetMapping("/user")
     public String userPage() {
 
         return "User page";
     }
 
-    @GetMapping("admin")
+    @GetMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
     public String adminPage() {
         return "Admin page";

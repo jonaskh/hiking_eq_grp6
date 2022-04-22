@@ -11,9 +11,6 @@ public class JDBConnection {
     private final String password = "postgres";
 
 
-    public JDBConnection() {
-        connect();
-    }
     /* Connect to the PostgreSQL database
      * @return a Connection object
      */
@@ -26,5 +23,9 @@ public class JDBConnection {
             System.out.println(e.getMessage());
         }
         return conn;
+    }
+
+    public JDBConnection() {
+        connect();
     }
 }

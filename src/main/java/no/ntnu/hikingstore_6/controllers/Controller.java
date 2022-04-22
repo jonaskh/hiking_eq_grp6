@@ -15,7 +15,6 @@ public class Controller {
     }
 
     @GetMapping("user")
-
     public String userPage() {
 
         return "User page";

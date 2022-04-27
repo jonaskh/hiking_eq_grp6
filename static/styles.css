@@ -12,6 +12,7 @@
 /* || NAVBAR */
 
 .navbar {
+    margin: 2rem;
     background-color: forestgreen;
     height: 5rem;
     display: flex;

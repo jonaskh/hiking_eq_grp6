@@ -21,12 +21,16 @@
 <!--Gets replaced by navbar.html-->
 <div id="nav-placeholder"></div>
 
-<section id='hero-section'>
-    <h1>Making your mountaineering <br>experience better</h1>
-    <form>
-        <button class = 'store_button' formaction="../html_css/store.html">Our Store</button>
-    </form>
-</section>
+
+<script>
+    $.get("slider.html", function(data){
+        $("#hero-section").replaceWith(data);
+    });
+</script>
+
+<div id = 'hero-section'></div>
+
+
 
 <h1 id='sort_product_heading'>Sort by product</h1>
 

@@ -17,6 +17,8 @@ public class Product {
     private String productName;
     private long productAmount;
 
+    private String productImage;
+
     public Product(float price, String size, String productCategory,
                    String productName, long productAmount) {
         this.price = price;
@@ -24,6 +26,7 @@ public class Product {
         this.productCategory = productCategory;
         this.productName = productName;
         this.productAmount = productAmount;
+        this.productImage = productImage;
     }
 
     public Product() {
@@ -64,6 +67,14 @@ public class Product {
 
     public String getProductName() {
         return productName;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     public void setProductName(String productName) {

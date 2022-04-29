@@ -11,6 +11,30 @@
         $.get("navbar.html", function(data){
             $("#nav-placeholder").replaceWith(data);
         } );
+
+        $(document).ready(function() {
+
+            $('.choose-color input').on('click', function() {
+                var headphonesColor = $(this).attr('data-image');
+
+                $('.active').removeClass('active');
+                $('.left-column img[data-image = ' + headphonesColor + ']').addClass('active');
+                $(this).addClass('active');
+            });
+
+
+            $('.tabs .tab-links a').on('click', function(e) {
+                let currentAttrValue = $(this).attr('href');
+
+                $('.tabs ' + currentAttrValue).show().siblings().hide();
+
+                $(this).parent('li').addClass('active').siblings().removeClass('active');
+
+                e.preventDefault();
+            });
+
+        });
+
     </script>
 
 </head>
@@ -82,10 +106,27 @@
 
         <div class="product-price">
             <span>800kr</span>
-            <form class="cart-button">
-                <button formaction="cartIndex.html">Add to cart</button>
+            <form>
+                <button id="CartButton" class = 'cart-button'>Add to cart</button>
             </form>
         </div>
+
+
+    <div class="tabs">
+        <ul class="tab-links">
+            <li class="active"><a href="#tab1">Tab 1</a></li>
+            <li><a href="#tab2">Tab 2</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="tab1" class="tab active">
+                <p>This is tab 1</p>
+            </div>
+        <div id="tab2">
+            <p>This is tab 2, so why does it show up when only 1 is supposed to be there?</p>
+        </div>
+    </div>
+    </div>
 
     </div>
 

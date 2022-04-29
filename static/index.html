@@ -15,6 +15,11 @@
             $("#nav-placeholder").replaceWith(data);
         });
     </script>
+    <script>
+        $.get("footer.html", function(data){
+            $("#footer-placeholder").replaceWith(data);
+        });
+    </script>
 
 </head>
 <body>
@@ -108,13 +113,12 @@
 
 
 </section>
+
+<footer class = "footer">
+    <div id="footer-placeholder"></div>
+</footer>
+
 </body>
 
 
-<footer>
-    <section id="footer-content">
-        <p>Foolish Developer --- source code.</p>
-    </section>
-
-</footer>
 </html>

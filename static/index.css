@@ -212,26 +212,3 @@ button {
 }
 
 
-/*******************************************************************************
-                        BOTTOM
- *******************************************************************************/
-
-#footer-content {
-    position: absolute;
-    top:250rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    background-color: forestgreen;
-    width:100vw;
-
-}
-
-#footer-content p {
-    max-width: 500px;
-    margin: 10px auto;
-    line-height: 28px;
-    font-size: 2rem;
-}

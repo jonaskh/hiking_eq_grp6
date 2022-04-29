@@ -6,6 +6,7 @@
     <title>XXS Frontpage</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index.css">
+    <link rel = 'stylesheet' href = 'style.css'>
 
     <!-- Loades navbar from file and replaces div in body so we dont have to dupe code-->
     <script src="//code.jquery.com/jquery.min.js"></script>
@@ -31,47 +32,12 @@
 <div id = 'hero-section'></div>
 
 
-
-<h1 id='sort_product_heading'>Sort by product</h1>
-
-<section id='product_types_container'>
-    <! sub divs here with grid of cards displaying product types>
-    <! grid or flexbox?>
-
-    <div class='hiking_shoes'>
-        <img src='./Images/shoes_type.jpg' alt='Hiking shoes'
-             style="width:150px;height:200px">
-        <br> Hiking Shoes
-    </div>
-
-    <div class='hats'>
-        <img src='./Images/Hats/Hats.jpg' alt='Hats'
-             style="width:150px;height:200px">
-        <br> Hats
-
-    </div>
-
-    <div class='sweaters'>
-        <img src='./Images/sweater_type.jpg' alt='Sweaters'
-             style="width:150px;height:200px">
-        <br> Sweaters
-
-    </div>
-
-    <div class='dog_clothing'>
-        <img src='./Images/dog_type.jpg' alt='Dog clothes'
-             style="width:150px;height:200px">
-        <br> Dog clothes
-
-    </div>
-
-
-</section>
-
-<form>
-    <button class = 'all_products' formaction="../html_css/store.html">All products</button>
-</form>
-
+<script>
+    $.get("card_carousel.html", function(data){
+        $("#product-types").replaceWith(data);
+    });
+</script>
+<div id = 'product-types'></div>
 
 <section id='reviews'>
     <div class='inspiring_text'>
@@ -86,7 +52,6 @@
 
 
 <section id='offers'>
-    <!scrolling pictures>
     <h1>
         3 hats for <br><span class = 'offer_price'>499NOK!</span>
     </h1>
@@ -95,7 +60,6 @@
     </form>
 
 </section>
-
 <section id='we_help_you'>
     <div class='help_text'>
         Contact us and we will help you pick the right equipment, <br>whether you're going skiing, hiking or fishing!
@@ -104,38 +68,44 @@
         </form>
     </div>
 </section>
-
-
 <section id='experience_container'>
-    <!flexbox or grid with pictures?>
     <div class='picture_1'>
         <div id='overlay_pic1'></div>
         <h1 id='pic1_header'>The latest backpack from <strong>Bergans,<br>
             the Glacial! </strong></h1>
-        <img src='./Images/Nature/ExperienceSection/experience1_small.jpg' alt='girl on snow'>
+        <img src='Images/ExpSection/exp1.jpg' alt='girl on snow'>
         <form>
             <button class = 'Read_more_pic1' formaction="../html/store.html">Our Store</button>
         </form>
-
     </div>
-
     <div class='picture_2'>
-        <div id='pic2_overlay'></div>
-        <h1 id='pic2_header'><strong>High quality gear </strong>from the <br>biggest brands in the industry</h1>
-        <img src='./Images/Nature/ExperienceSection/experience2_big(1).jpg' alt='guy on bike'>
+        <h1 id='pic2_header'>The latest backpack from <strong>Bergans,<br>
+            the Glacial! </strong></h1>
+        <img src='Images/ExpSection/exp2.jpg' alt='girl on snow'>
         <form>
-            <button class = 'Read_more_pic2' formaction="../html_css/store.html">Our Store</button>
+            <button class = 'Read_more_pic2' formaction="../html/store.html">Our Store</button>
         </form>
-
     </div>
-
     <div class='picture_3'>
-        <h1 id='pic3_header'>Matching clothes for you <br><strong>and your dog</strong></h1>
-        <img src='./Images/Nature/ExperienceSection/dog2.jpg' alt='dog in backpack'>
+        <h1 id='pic3_header'>The latest backpack from <strong>Bergans,<br>
+            the Glacial! </strong></h1>
+        <img src='Images/ExpSection/exp3.jpg' alt='girl on snow'>
         <form>
-            <button class = 'Read_more_pic3' formaction="../html_css/store.html">Our Store</button>
+            <button class = 'Read_more_pic3' formaction="../html/store.html">Our Store</button>
         </form>
+
     </div>
+
+    <div class='picture_4'>
+        <h1 id='pic4_header'>The latest backpack from <strong>Bergans,<br>
+            the Glacial! </strong></h1>
+        <img src='Images/ExpSection/exp4.jpg' alt='girl on snow'>
+        <form>
+            <button class = 'Read_more_pic4' formaction="../html/store.html">Our Store</button>
+        </form>
+
+    </div>
+
 
 </section>
 </body>

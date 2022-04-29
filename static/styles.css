@@ -3,23 +3,29 @@
 
 * {
     font-size: 62.5%;
-    font-family: 'Karla', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0 0 0 0;
+
+}
+
+html {
+    background: #ece9e6;
+    background-image: linear-gradient(to top, #df66fa 0%, #a6c1ee 100%);
 }
 
 /* || NAVBAR */
 
 .navbar {
-    margin: 2rem;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
     background-color: forestgreen;
     height: 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: sticky;
-    top: 0;
+    position: absolute;
     z-index: 999;
     width: 100vw;
 }

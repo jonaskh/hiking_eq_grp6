@@ -9,6 +9,14 @@
     padding: 0 0 0 0;
 }
 
+html {
+  position: relative;
+}
+
+body {
+  margin-bottom: 85rem;
+}
+
 /* || NAVBAR */
 
 .navbar {
@@ -135,6 +143,10 @@ button {
   .footer {
     padding: 4rem 0;
     background-color: #ffbbbb;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 20rem;
   }
   
   .footer .social {

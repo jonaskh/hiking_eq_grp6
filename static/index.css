@@ -33,10 +33,9 @@ button {
 
 #offers {
     display: flex;
-    position: relative;
     justify-content: center;
+    position: relative;
     background-image: url("static/Images/Hats/hat_offer_final.jpg");
-    min-height: 25rem;
     max-width: 80rem;
     max-height: 45rem;
     margin-bottom: 5rem;

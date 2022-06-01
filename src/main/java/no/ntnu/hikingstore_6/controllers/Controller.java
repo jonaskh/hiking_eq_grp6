@@ -1,6 +1,7 @@
 package no.ntnu.hikingstore_6.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -28,5 +29,10 @@ public class Controller {
 
 
 
+    @RequestMapping("/products")
+    public String getProducts(Model model) {
 
+        return productPage;
+
+    }
 }

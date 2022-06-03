@@ -4649,6 +4649,7 @@ textarea.form-control-lg {
   }
 }
 
+
 .accordion-button {
   position: relative;
   display: flex;
@@ -5997,7 +5998,7 @@ textarea.form-control-lg {
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 0.5s ease-out;
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-item {

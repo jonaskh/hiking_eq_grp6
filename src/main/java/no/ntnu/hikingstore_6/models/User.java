@@ -1,20 +1,27 @@
 package no.ntnu.hikingstore_6.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "email")
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "enabled")
     private boolean active = true;
+
+
+    /*
+    User relation to the role table that determines the roles of the user.
+     */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name="user_id"),
+    @JoinTable(name = "authorities",
+            joinColumns = @JoinColumn(name="email"),
             inverseJoinColumns = @JoinColumn(name="role_id")
     )
     private Set<Role> roles = new LinkedHashSet<>();
@@ -25,10 +32,11 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password) {
+    public User(String username, String password, boolean active) {
         this.username = username;
         this.password = password;
     }
+
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
@@ -36,15 +44,6 @@ public class User {
 
     public Set<Role> getRoles() {
         return roles;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getUsername() {

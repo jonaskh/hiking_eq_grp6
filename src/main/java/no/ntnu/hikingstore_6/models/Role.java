@@ -1,19 +1,23 @@
 package no.ntnu.hikingstore_6.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+@Table (name = "authorities")
 @Entity(name="roles")
 public class Role {
     @Id
     @GeneratedValue
+    @Column(name = "role_id")
     private Long id;
 
+    @Column(name = "authority")
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new LinkedHashSet<>();
+    private Set<User> users = new HashSet<>();
 
     /**
      * Empty constructor needed for JPA

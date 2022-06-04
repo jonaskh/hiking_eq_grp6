@@ -32,7 +32,7 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
 
             logger.info("Done importing data.");
         }  else {
-            logger.info("Data already loaded, not importing anything.");
+            logger.info("Data already loaded, not importing.");
         }
 
     }

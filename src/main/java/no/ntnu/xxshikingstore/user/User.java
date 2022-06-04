@@ -13,22 +13,25 @@ public class User {
     @Column(length = 45, nullable = false, name = "product_name")
     private String productName;
 
-    @Column(length = 10, nullable = false, name = "product_category")
+    @Column(length = 45, nullable = false, name = "product_category")
     private String productCategory;
+
+
 
     @Column(length = 10, nullable = false, name = "price")
     private int price;
 
-    private int productAmount;
-
     @Column(length = 10, nullable = false, name = "size")
     private String size;
 
-    @Column(nullable = false, name = "product_image")
+    @Column(length = 1000, nullable = false, name = "product_image")
     private String productImage;
 
-    @Column(nullable = false, name = "product_desc")
+    @Column(length = 1000, nullable = false, name = "product_desc")
     private String productDesc;
+
+    @Column(length = 10, nullable = false, name = "productAmount")
+    private int productAmount;
 
 
 
@@ -102,5 +105,13 @@ public class User {
                 ", productImage='" + productImage + '\'' +
                 ", productDesc='" + productDesc + '\'' +
                 '}';
+    }
+
+    public int getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(int productAmount) {
+        this.productAmount = productAmount;
     }
 }

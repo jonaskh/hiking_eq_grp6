@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Manage users</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <div class="container-fluid text-center">
@@ -47,6 +48,28 @@
             </tbody>
             </thead>
         </table>
+
+
+        <th:block th:each="user : ${listUsers}">
+
+
+            <div class="row">
+
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" th:src="${user.productImage}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">[[${user.productName}]]</h5>
+                        <p class="card-text">[[${user.productDesc}]]</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </th:block>
+
+
+
     </div>
 </div>
 </body>

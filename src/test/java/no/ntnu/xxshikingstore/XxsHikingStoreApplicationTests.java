@@ -1,13 +1,13 @@
-package no.ntnu.hikingstore_6;
+package no.ntnu.xxshikingstore;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HikingStore6ApplicationTests {
+class XxsHikingStoreApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }

@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HikingStore6Application {
+public class   XxsHikingStoreApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(HikingStore6Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(XxsHikingStoreApplication.class, args);
+    }
 
 }

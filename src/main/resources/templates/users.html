@@ -53,8 +53,7 @@
         <th:block th:each="user : ${listUsers}">
 
 
-            <div class="row">
-
+            <section style="display: inline-flex">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" th:src="${user.productImage}" alt="Card image cap">
                     <div class="card-body">
@@ -64,7 +63,8 @@
                     </div>
                 </div>
 
-            </div>
+            </section>
+
 
         </th:block>
 

@@ -49,6 +49,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 // Public endpoints
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/home").permitAll()
+                .antMatchers("/userList").permitAll()
 
                 // Every other endpoints need one form of authentication
                 // What type of authentication is specified with an annotation over each endpoint

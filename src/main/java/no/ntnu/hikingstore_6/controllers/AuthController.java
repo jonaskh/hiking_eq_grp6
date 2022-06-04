@@ -2,7 +2,9 @@ package no.ntnu.hikingstore_6.controllers;
 
 import no.ntnu.hikingstore_6.models.AuthenticationRequest;
 import no.ntnu.hikingstore_6.models.AuthenticationResponse;
+import no.ntnu.hikingstore_6.models.User;
 import no.ntnu.hikingstore_6.security.JwtUtil;
+import no.ntnu.hikingstore_6.service.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,9 +12,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+import java.util.List;
+
+@Controller
 public class AuthController {
 
 
@@ -24,6 +30,9 @@ public class AuthController {
 
     @Autowired
     private JwtUtil jwtTokenUtil;
+
+    @Autowired
+    private AccessUserService accessUserService;
 
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
@@ -42,20 +51,5 @@ public class AuthController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
 
     }
-
-
-    @RequestMapping("/home")
-    public String homePage() {
-
-        return "This is the home page of the web store";
-    }
-
-    @GetMapping("/user")
-    public String userPage() {
-
-        return "User page";
-    }
-
-
 
 }

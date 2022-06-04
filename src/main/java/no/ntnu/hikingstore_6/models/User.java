@@ -1,5 +1,7 @@
 package no.ntnu.hikingstore_6.models;
 
+import org.hibernate.engine.profile.Fetch;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -10,6 +12,7 @@ import java.util.Set;
 public class User {
 
     @Id
+    @Column(nullable = false,length = 45)
     private String username;
 
     @Column(nullable = false, length = 20)
@@ -29,14 +32,23 @@ public class User {
     User relation to the role table that determines the roles of the user.
      */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "authorities",
-            joinColumns = @JoinColumn(name="email"),
-            inverseJoinColumns = @JoinColumn(name="role_id")
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
+
+    //Full constructor
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
+
     /**
-     * Empty constructor needed for JPA
+     * Empty constructor needed for hibernate
      */
     public User() {
     }
@@ -50,20 +62,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String username, String password, String email) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
 
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
 
     public String getUsername() {
         return username;
@@ -89,12 +88,15 @@ public class User {
         this.enabled = active;
     }
 
-    /**
-     * Add a role to the user
-     *
-     * @param role Role to add
-     */
-    public void addRole(Role role) {
-        roles.add(role);
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void addRole (Role role) {
+        this.roles.add(role);
     }
 }

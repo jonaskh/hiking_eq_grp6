@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @org.springframework.stereotype.Controller
 public class Controller {
 
-    @GetMapping("")
+    @GetMapping("/home")
     public String showHomePage() {
         return "test";
     }

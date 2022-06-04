@@ -1,15 +1,17 @@
 package no.ntnu.hikingstore_6.service;
 
+import no.ntnu.hikingstore_6.models.CustomUserDetails;
+import no.ntnu.hikingstore_6.models.User;
 import no.ntnu.hikingstore_6.repositories.RoleRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -20,9 +22,13 @@ public class MyUserDetailsService implements UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
-    //TODO: REPLACE USER WITH USER FROM DATABASE
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User("foo","foo", new ArrayList<>());
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            return new CustomUserDetails(user);
+
+        }
+        throw new UsernameNotFoundException("No user with that username found");
     }
 }

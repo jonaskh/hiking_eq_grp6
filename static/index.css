@@ -1,0 +1,121 @@
+button {
+    background-color: rgba(255, 255, 0, 0.81);
+}
+
+/*******************************************************************************
+                        REVIEWS
+ *******************************************************************************/
+
+
+#reviews {
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 10rem;
+}
+
+.inspiring_text {
+    font-weight: lighter;
+    font-size: 3rem;
+}
+
+.more_inspiring_text {
+    position: absolute;
+    left: 85rem;
+    top: 110rem;
+    scale: 125%;
+}
+
+
+/*******************************************************************************
+                        OFFERS
+ *******************************************************************************/
+
+#offers {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-image: url("static/Images/Hats/hat_offer_final.jpg");
+    max-width: 80rem;
+    max-height: 45rem;
+    margin-bottom: 5rem;
+}
+
+#offers h1 {
+    font-weight: lighter;
+    font-size: 4rem;
+    position: absolute;
+    top: 6rem;
+}
+
+
+.offers_button {
+    position: absolute;
+    top: 16rem;
+    height: 2.5rem;
+    width: 10rem;
+}
+
+.offer_price {
+    font-weight: bolder;
+    font-size: 5rem;
+}
+
+
+/*******************************************************************************
+                        CONSULTING
+ *******************************************************************************/
+
+#we_help_you {
+    position: relative;
+    display: flex;
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.help_text {
+    font-weight: lighter;
+    font-size: 3rem;
+}
+
+.contact_button {
+    position: absolute;
+    left: 85rem;
+    margin-top: 2rem;
+}
+
+
+/*******************************************************************************
+                        EXPERIENCES
+ *******************************************************************************/
+
+#experience_container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,10vw);
+    grid-gap: 5rem;
+    grid-row-gap: 20rem;
+
+}
+
+#experience_container .img_header1 {
+    position: absolute;
+    top:5rem;
+    color: white;
+}
+
+#experience_container .img_header2 {
+    position: absolute;
+    top:42rem;
+    color: white;
+}
+
+#experience_container :nth-child(4) {
+    background: url("Images/ExpSection/exp4.jpg");
+
+}
+
+

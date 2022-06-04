@@ -4,18 +4,24 @@ import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 public class User {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String username;
+
+    @Column(nullable = false, length = 20)
     private String password;
-    private boolean active = true;
+
+    private boolean enabled = true;
+
+    private String email;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id")
+            joinColumns = @JoinColumn(name = "email"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
@@ -25,9 +31,18 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password) {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     public void setRoles(Set<Role> roles) {
@@ -38,14 +53,6 @@ public class User {
         return roles;
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;
@@ -64,11 +71,11 @@ public class User {
     }
 
     public boolean isActive() {
-        return active;
+        return enabled;
     }
 
     public void setActive(boolean active) {
-        this.active = active;
+        this.enabled = active;
     }
 
     /**

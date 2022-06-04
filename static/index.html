@@ -10,13 +10,8 @@
     <!-- Loades navbar from file and replaces div in body so we dont have to dupe code-->
     <script src="//code.jquery.com/jquery.min.js"></script>
     <script>
-        $.get("navbar.html", function(data){
+        $.get("navbar.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
-        });
-    </script>
-    <script>
-        $.get("footer.html", function(data){
-            $("#footer-placeholder").replaceWith(data);
         });
     </script>
 
@@ -28,55 +23,20 @@
 
 
 <script>
-    $.get("slider.html", function(data){
+    $.get("slider.html", function (data) {
         $("#hero-section").replaceWith(data);
     });
 </script>
 
-<div id = 'hero-section'></div>
+<div id='hero-section'></div>
 
 
-
-<h1 id='sort_product_heading'>Sort by product</h1>
-
-<section id='product_types_container'>
-    <! sub divs here with grid of cards displaying product types>
-    <! grid or flexbox?>
-
-    <div class='hiking_shoes'>
-        <img src='./Images/shoes_type.jpg' alt='Hiking shoes'
-             style="width:150px;height:200px">
-        <br> Hiking Shoes
-    </div>
-
-    <div class='hats'>
-        <img src='./Images/Hats/Hats.jpg' alt='Hats'
-             style="width:150px;height:200px">
-        <br> Hats
-
-    </div>
-
-    <div class='sweaters'>
-        <img src='./Images/sweater_type.jpg' alt='Sweaters'
-             style="width:150px;height:200px">
-        <br> Sweaters
-
-    </div>
-
-    <div class='dog_clothing'>
-        <img src='./Images/dog_type.jpg' alt='Dog clothes'
-             style="width:150px;height:200px">
-        <br> Dog clothes
-
-    </div>
-
-
-</section>
-
-<form>
-    <button class = 'all_products' formaction="../html_css/store.html">All products</button>
-</form>
-
+<script>
+    $.get("card_carousel.html", function (data) {
+        $("#product-types").replaceWith(data);
+    });
+</script>
+<div id='product-types'></div>
 
 <section id='reviews'>
     <div class='inspiring_text'>
@@ -84,71 +44,87 @@
         place for the latest hiking gear." <br>
         -Anton Berg Hansen
         <form>
-            <button class = 'reviews_button' formaction="../html_css/store.html">Read more</button>
+            <button class='reviews_button' formaction="../html_css/store.html">Read more</button>
         </form>
     </div>
 </section>
 
 
 <section id='offers'>
-    <!scrolling pictures>
     <h1>
-        3 hats for <br><span class = 'offer_price'>499NOK!</span>
+        3 hats for <br><span class='offer_price'>499NOK!</span>
     </h1>
     <form>
-        <button class = 'offers_button' formaction="../html_css/store.html">Our Store</button>
+        <button class='offers_button' formaction="../html_css/store.html">Our Store</button>
     </form>
 
 </section>
-
 <section id='we_help_you'>
     <div class='help_text'>
         Contact us and we will help you pick the right equipment, <br>whether you're going skiing, hiking or fishing!
         <form>
-            <button class = 'contact_button' formaction="../html_css/store.html">Contact us</button>
+            <button class='contact_button' formaction="../html_css/store.html">Contact us</button>
         </form>
     </div>
 </section>
-
-
 <section id='experience_container'>
-    <!flexbox or grid with pictures?>
-    <div class='picture_1'>
+    <div class='picture'>
+        <div class = 'overlay'>
         <div id='overlay_pic1'></div>
-        <h1 id='pic1_header'>The latest backpack from <strong>Bergans,<br>
+        <h1 class='img_header1'>The latest backpack from <strong>Bergans,<br>
             the Glacial! </strong></h1>
-        <img src='./Images/Nature/ExperienceSection/experience1_small.jpg' alt='girl on snow'>
+        <img src='Images/ExpSection/exp1.jpg' alt='girl on snow'>
+    </div>
         <form>
-            <button class = 'Read_more_pic1' formaction="../html/store.html">Our Store</button>
+            <button class='Read_more' formaction="../html/store.html">Our Store</button>
+        </form>
+    </div>
+    <div class='picture'>
+        <div class = 'overlay'>
+        <h1 class='img_header1'>The latest backpack from <strong>Bergans,<br>
+            the Glacial! </strong></h1>
+        <img src='Images/ExpSection/exp2.jpg' alt='girl on snow'>
+        </div>
+        <form>
+            <button class='Read_more' formaction="../html/store.html">Our Store</button>
+        </form>
+    </div>
+    <div class='picture'>
+        <div class = 'overlay'>
+        <h1 class='img_header2'>The latest backpack from <strong>Bergans,<br>
+            the Glacial! </strong></h1>
+        <img src='Images/ExpSection/exp3.jpg' alt='girl on snow'>
+        </div>
+        <form>
+            <button class='Read_more' formaction="../html/store.html">Our Store</button>
         </form>
 
     </div>
 
-    <div class='picture_2'>
-        <div id='pic2_overlay'></div>
-        <h1 id='pic2_header'><strong>High quality gear </strong>from the <br>biggest brands in the industry</h1>
-        <img src='./Images/Nature/ExperienceSection/experience2_big(1).jpg' alt='guy on bike'>
+    <div class='picture'>
+        <div class = 'overlay'>
+        <h1 class='img_header2'>The latest backpack from <strong>Bergans,<br>
+            the Glacial! </strong></h1>
+        </div>
         <form>
-            <button class = 'Read_more_pic2' formaction="../html_css/store.html">Our Store</button>
+            <button class='Read_more' formaction="../html/store.html">Our Store</button>
         </form>
 
     </div>
 
-    <div class='picture_3'>
-        <h1 id='pic3_header'>Matching clothes for you <br><strong>and your dog</strong></h1>
-        <img src='./Images/Nature/ExperienceSection/dog2.jpg' alt='dog in backpack'>
-        <form>
-            <button class = 'Read_more_pic3' formaction="../html_css/store.html">Our Store</button>
-        </form>
-    </div>
 
 </section>
+
+
+<script>
+    $.get("footer.html", function (data) {
+        $("#footer-placeholder").replaceWith(data);
+    });
+</script>
+
+<div id="footer-placeholder"></div>
+
 </body>
 
 
-
-
-<footer class = "footer">
-    <div id="footer-placeholder"></div>
-</footer>
 </html>

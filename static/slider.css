@@ -10,6 +10,13 @@
 }
 
 
+#hero_button {
+  position: absolute;
+  left: 53rem;
+  top: 31rem;
+  border: none;
+  scale: 150%;
+}
 .slider-container {
   position: relative;
   overflow: hidden;

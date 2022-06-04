@@ -1,6 +1,7 @@
 package no.ntnu.hikingstore_6.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -14,14 +15,23 @@ public class User {
     @Column(nullable = false, length = 20)
     private String password;
 
-    private boolean enabled = true;
-
+    @Column(nullable = false, length = 20)
     private String email;
 
+
+    private boolean enabled = true;
+
+
+
+
+
+    /*
+    User relation to the role table that determines the roles of the user.
+     */
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "email"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
+    @JoinTable(name = "authorities",
+            joinColumns = @JoinColumn(name="email"),
+            inverseJoinColumns = @JoinColumn(name="role_id")
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
@@ -30,6 +40,7 @@ public class User {
      */
     public User() {
     }
+
 
     public String getEmail() {
         return email;
@@ -45,6 +56,7 @@ public class User {
         this.email = email;
     }
 
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
@@ -52,7 +64,6 @@ public class User {
     public Set<Role> getRoles() {
         return roles;
     }
-
 
     public String getUsername() {
         return username;

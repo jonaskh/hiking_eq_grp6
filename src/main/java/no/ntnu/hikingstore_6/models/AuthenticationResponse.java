@@ -1,14 +1,30 @@
-package no.ntnu.hikingstore_6.models;
+package no.ntnu.xxs.user.api;
 
-public class AuthenticationResponse {
+public class AuthResponse {
+	private String email;
+	private String accessToken;
 
-    private String jwt;
+	public AuthResponse() { }
+	
+	public AuthResponse(String email, String accessToken) {
+		this.email = email;
+		this.accessToken = accessToken;
+	}
 
-    public AuthenticationResponse(String jwt) {
-        this.jwt = jwt;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public String getJWT () {
-        return jwt;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+
 }

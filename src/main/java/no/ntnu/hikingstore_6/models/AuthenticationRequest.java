@@ -1,34 +1,32 @@
-package no.ntnu.hikingstore_6.models;
+package no.ntnu.xxs.user.api;
 
-public class AuthenticationRequest {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
-    private String username;
-    private String password;
+import org.hibernate.validator.constraints.Length;
 
-    public AuthenticationRequest(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+public class AuthRequest {
+	@NotNull @Email @Length(min = 5, max = 50)
+	private String email;
+	
+	@NotNull @Length(min = 5, max = 10)
+	private String password;
 
-    public AuthenticationRequest() {
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public AuthenticationRequest(String jwt) {
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
 }

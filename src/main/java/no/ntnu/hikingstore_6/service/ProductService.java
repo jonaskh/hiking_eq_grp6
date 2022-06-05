@@ -1,8 +1,8 @@
 package no.ntnu.hikingstore_6.service;
 
 import no.ntnu.hikingstore_6.entities.Product;
-import no.ntnu.hikingstore_6.repositories.ProductRepository;
 import no.ntnu.hikingstore_6.exceptions.ProductNotFoundException;
+import no.ntnu.hikingstore_6.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +31,11 @@ public class ProductService {
     }
 
     public void delete(Integer id) throws ProductNotFoundException {
-        Long count= productRepository.countById(id);
-        if (count == null || count == 0) {
-            throw new ProductNotFoundException("Could not find any users with ID " + id);
+        Optional<Product> optionalProduct = productRepository.findById(id);
+        if (optionalProduct.isEmpty()) {
+            throw new ProductNotFoundException("Could not find any products with ID " + id);
+        } else {
+            productRepository.deleteById(id);
         }
-        productRepository.deleteById(id);
     }
 }

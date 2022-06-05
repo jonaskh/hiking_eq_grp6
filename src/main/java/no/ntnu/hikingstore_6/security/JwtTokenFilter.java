@@ -1,4 +1,4 @@
-package no.ntnu.xxs.jwt;
+package no.ntnu.hikingstore_6.security;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import io.jsonwebtoken.Claims;
-import no.ntnu.xxs.user.Role;
-import no.ntnu.xxs.user.User;
+import no.ntnu.hikingstore_6.entities.Role;
+import no.ntnu.hikingstore_6.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

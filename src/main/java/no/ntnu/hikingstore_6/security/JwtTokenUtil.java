@@ -1,7 +1,8 @@
-package no.ntnu.xxs.jwt;
+package no.ntnu.hikingstore_6.security;
 
 import java.util.Date;
 
+import no.ntnu.hikingstore_6.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +15,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
-import no.ntnu.xxs.user.User;
+
 @Component
 public class JwtTokenUtil {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);

@@ -1,7 +1,6 @@
-package no.ntnu.xxs;
+package no.ntnu.hikingstore_6.security;
 
-import javax.servlet.http.HttpServletResponse;
-
+import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,17 +15,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import no.ntnu.xxs.jwt.JwtTokenFilter;
-import no.ntnu.xxs.user.UserRepository;
+import no.ntnu.hikingstore_6.security.JwtTokenFilter;
 
 
 @EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity ( prePostEnabled = false, jsr250Enabled = true)
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 
-	@Autowired private UserRepository userRepo;
+	@Autowired
+	private UserRepository userRepo;
 	
-	@Autowired private JwtTokenFilter jwtTokenFilter;
+	@Autowired
+	private JwtTokenFilter jwtTokenFilter;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

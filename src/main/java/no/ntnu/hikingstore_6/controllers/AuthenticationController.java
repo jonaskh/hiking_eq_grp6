@@ -1,7 +1,10 @@
-package no.ntnu.xxs.user.api;
+package no.ntnu.hikingstore_6.controllers;
 
 import javax.validation.Valid;
 
+import no.ntnu.hikingstore_6.entities.User;
+import no.ntnu.hikingstore_6.models.AuthenticationRequest;
+import no.ntnu.hikingstore_6.models.AuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,16 +16,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import no.ntnu.xxs.jwt.JwtTokenUtil;
-import no.ntnu.xxs.user.User;
+import no.ntnu.hikingstore_6.security.JwtTokenUtil;
 
 @RestController
-public class AuthApi {
-	@Autowired AuthenticationManager authManager;
-	@Autowired JwtTokenUtil jwtUtil;
+public class AuthenticationController {
+	@Autowired
+	AuthenticationManager authManager;
+
+	@Autowired
+	JwtTokenUtil jwtUtil;
 	
 	@PostMapping("/auth/login")
-	public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
+	public ResponseEntity<?> login(@RequestBody @Valid AuthenticationRequest request) {
 		try {
 			Authentication authentication = authManager.authenticate(
 					new UsernamePasswordAuthenticationToken(
@@ -31,7 +36,7 @@ public class AuthApi {
 			
 			User user = (User) authentication.getPrincipal();
 			String accessToken = jwtUtil.generateAccessToken(user);
-			AuthResponse response = new AuthResponse(user.getEmail(), accessToken);
+			AuthenticationResponse response = new AuthenticationResponse(user.getEmail(), accessToken);
 			
 			return ResponseEntity.ok().body(response);
 			

@@ -1,11 +1,11 @@
-package no.ntnu.xxs.user.api;
+package no.ntnu.hikingstore_6.models;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-public class AuthRequest {
+public class AuthenticationRequest {
 	@NotNull @Email @Length(min = 5, max = 50)
 	private String email;
 	

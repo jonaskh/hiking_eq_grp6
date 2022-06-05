@@ -1,12 +1,12 @@
-package no.ntnu.xxs.user.api;
+package no.ntnu.hikingstore_6.models;
 
-public class AuthResponse {
+public class AuthenticationResponse {
 	private String email;
 	private String accessToken;
 
-	public AuthResponse() { }
+	public AuthenticationResponse() { }
 	
-	public AuthResponse(String email, String accessToken) {
+	public AuthenticationResponse(String email, String accessToken) {
 		this.email = email;
 		this.accessToken = accessToken;
 	}

@@ -1,4 +1,4 @@
-package no.ntnu.hikingstore_6;
+package no.ntnu.xxshikingstore;
 
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
@@ -15,6 +15,7 @@ import java.util.Optional;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(false)
 public class UserRepoTest {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -23,23 +24,23 @@ public class UserRepoTest {
      */
     @Test
     public void addUser() {
-        User user = new User("jonaskh","password","jonaskh@ntnu.no");
+        User user = new User("jonaskh@nntu.no","password",6300,"jonaskh@ntnu.no");
         User savedUser = userRepository.save(user);
 
-        Assertions.assertThat((userRepository.findByUsername(user.getUsername()).isPresent()));
+        Assertions.assertThat((userRepository.findByEmail(user.getEmail()).isPresent()));
         Assertions.assertThat(savedUser.getUsername()).isNotEmpty();
     }
 
     @Test
     public void updateUser() {
-        Optional<User> optionalUser = userRepository.findByUsername("jonaskh");
+        Optional<User> optionalUser = userRepository.findByEmail("jonaskh@ntnu.no");
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             user.setEmail("jonaskh@gmail.com");
 
             User updatedUser = null;
-            if (userRepository.findByUsername("jonaskh").isPresent()) {
-                updatedUser = userRepository.findByUsername("jonaskh").get();
+            if (userRepository.findByEmail("jonaskh@ntnu.no").isPresent()) {
+                updatedUser = userRepository.findByEmail("jonaskh@ntnu.no").get();
                 Assertions.assertThat(updatedUser.getEmail().equalsIgnoreCase("jonaskh@gmail.com"));
 
             }
@@ -48,14 +49,14 @@ public class UserRepoTest {
 
     @Test
     public void deleteUserByUsername() {
-        String usernameToDelete = "jonaskh";
+        String emailtoDelete = "jonaskh@ntnu.no";
 
-        Optional<User> userToDelete = userRepository.findByUsername(usernameToDelete);
+        Optional<User> userToDelete = userRepository.findByEmail(emailtoDelete);
         if (userToDelete.isPresent()) {
             User user = userToDelete.get();
             userRepository.delete(user);
 
-            Optional<User> deletedUser = userRepository.findByUsername("jonaskh");
+            Optional<User> deletedUser = userRepository.findByEmail("jonaskh@ntnu.no");
             Assertions.assertThat(deletedUser.isEmpty());
 
         }

@@ -13,9 +13,6 @@ public class AuthenticationRequest {
     public AuthenticationRequest() {
     }
 
-    public AuthenticationRequest(String jwt) {
-    }
-
     public String getUsername() {
         return username;
     }

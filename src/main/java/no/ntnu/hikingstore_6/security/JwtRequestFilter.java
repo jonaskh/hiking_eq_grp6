@@ -1,6 +1,6 @@
 package no.ntnu.hikingstore_6.security;
 
-import no.ntnu.hikingstore_6.service.MyUserDetailsService;
+import no.ntnu.hikingstore_6.service.AccessUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +22,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private MyUserDetailsService userDetailsService;
+    private AccessUserService userDetailsService;
 
 
     @Override

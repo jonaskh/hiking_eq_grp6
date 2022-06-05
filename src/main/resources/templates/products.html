@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <title>Manage products</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel = "stylesheet"  href = "../css/style.css" />
 </head>
 <body>
 <div class="container-fluid text-center">
     <div><h2>Manage products</h2></div>
     <div class="m-2">
         <a class="h3" th:href="@{/products/new}">Add new product</a>
-
-        <div th:if="${message}" class="alert alert-success text-center">
-            [[${message}]]
-
         </div>
     </div>
     <div>
@@ -53,7 +49,7 @@
         <th:block th:each="product : ${listProducts}">
 
 
-            <section style="display: inline-flex">
+
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" th:src="${product.productImage}" alt="Card image cap">
                     <div class="card-body">
@@ -62,9 +58,6 @@
                         <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-
-            </section>
-
 
         </th:block>
 

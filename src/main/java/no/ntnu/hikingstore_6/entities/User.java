@@ -1,30 +1,31 @@
 package no.ntnu.hikingstore_6.entities;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @Column(nullable = false,length = 45)
     private String username;
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 64)
     private String password;
 
     @Column(nullable = false, length = 20)
     private String email;
 
 
+    //Set to true default when created
     private boolean enabled = true;
-
-
-
-
 
     /*
     User relation to the role table that determines the roles of the user.
@@ -44,6 +45,10 @@ public class User {
         this.email = email;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     /**
      * Empty constructor needed for hibernate
@@ -68,6 +73,33 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {

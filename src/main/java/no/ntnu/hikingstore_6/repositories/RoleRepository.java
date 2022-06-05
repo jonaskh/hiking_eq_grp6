@@ -11,8 +11,7 @@ public interface RoleRepository extends CrudRepository<Role, Long> {
     @Override
     Optional<Role> findById(Long aLong);
 
-    @Query("SELECT r FROM Role r WHERE r.name = ?1")
-    public Role findByName(String name);
+    Optional<Role> findByName(String name);
 
 }
 

@@ -31,8 +31,8 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        Optional<Product> existingProduct = productRepository.findById(1);
-        if (existingProduct.isEmpty()) {
+        Optional<User> existingUser = userRepository.findByUsername("jonaskh");
+        if (existingUser.isEmpty()) {
             logger.info("Starting dummy init...");
             Product sweater = new Product("sweater","Sweaters", 199,"Medium","asdasdad","Nice sweater", 9);
             Product shoes = new Product("hiking shoe","Shoes", 999,"49","asdasd12e","Nice shoe", 11);

@@ -33,7 +33,7 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
         Optional<Product> existingProduct = productRepository.findById(1);
-        Optional<User> existingUser = userRepository.findByUsername("BobbyB");
+        Optional<User> existingUser = userRepository.findByUsername("Jonas");
         if (existingProduct.isEmpty()) {
             logger.info("Starting dummy init...");
             Product sweater = new Product("sweater","Sweaters", 199,"Medium","asdasdad","Nice sweater", 9);
@@ -50,13 +50,9 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
         }
 
         if(existingUser.isEmpty()) {
-            User customer2 = new User("BobbyB","BobbyB@stud.ntnu.no","123456789");
-            Role role = new Role("ROLE_ADMIN");
-            if (customer2.getRoles().isEmpty()) {
-                customer2.addRole(role);
-            }
+            User customer2 = new User("Jonas","Jonas@stud.ntnu.no","12345");
+
             userRepository.save(customer2);
-            roleRepository.save(role);
 
 
 

@@ -5,7 +5,6 @@ import no.ntnu.hikingstore_6.entities.Cart;
 import no.ntnu.hikingstore_6.entities.Product;
 import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.entities.User;
-import no.ntnu.hikingstore_6.repositories.CartItemRepository;
 import no.ntnu.hikingstore_6.repositories.CartRepository;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;

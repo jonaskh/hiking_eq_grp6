@@ -48,9 +48,9 @@ public class User implements UserDetails {
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
-	private Cart cart;
+	private Cart cart = new Cart();
 
 	//---------------------------------------------------------------------------------
 	//------------------------CONSTRUCTORS---------------------------------------------

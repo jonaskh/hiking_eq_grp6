@@ -2,10 +2,8 @@ package no.ntnu.hikingstore_6.controllers;
 
 import no.ntnu.hikingstore_6.dtos.AddItemToCardDTO;
 import no.ntnu.hikingstore_6.entities.Cart;
-import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
 import no.ntnu.hikingstore_6.security.JwtTokenUtil;
-import no.ntnu.hikingstore_6.service.ProductInCartService;
 import no.ntnu.hikingstore_6.service.ProductService;
 import no.ntnu.hikingstore_6.service.ShoppingCartService;
 import no.ntnu.hikingstore_6.service.UserService;
@@ -29,9 +27,6 @@ public class CartController {
 
     @Autowired
     ProductService productService;
-
-    @Autowired
-    ProductInCartService productInCartService;
 
     @Autowired
     ProductInCartRepository productInCartRepository;

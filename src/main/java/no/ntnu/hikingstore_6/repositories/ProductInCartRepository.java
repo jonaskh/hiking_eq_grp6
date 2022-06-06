@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 public interface ProductInCartRepository extends CrudRepository<ProductInCart,Long> {
 
+
+    @Query(value = "select * from product_in_cart where cart_id = ? and product_id = ?", nativeQuery = true)
     Optional<ProductInCart> findProductInCart(Long cartID, long productID);
 
 }

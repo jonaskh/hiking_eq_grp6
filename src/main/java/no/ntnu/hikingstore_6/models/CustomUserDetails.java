@@ -1,7 +1,6 @@
+/*
 package no.ntnu.hikingstore_6.models;
 
-import no.ntnu.hikingstore_6.entities.Role;
-import no.ntnu.hikingstore_6.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -60,3 +59,4 @@ public class CustomUserDetails implements UserDetails {
     }
 
 }
+*/

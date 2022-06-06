@@ -1,7 +1,6 @@
+/*
 package no.ntnu.hikingstore_6.service;
 
-import no.ntnu.hikingstore_6.entities.Role;
-import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.repositories.RoleRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +18,12 @@ public class AccessUserService {
     @Autowired
     UserRepository userRepository;
 
-    /**
+    */
+/**
      * Return a list of all users in the database
      * @return a list of users
-     */
+     *//*
+
     public List<User> listUsers() {
 
         return (List<User>) this.userRepository.findAll();
@@ -49,3 +50,4 @@ public class AccessUserService {
         return BCrypt.hashpw(password,BCrypt.gensalt());
     }
 }
+*/

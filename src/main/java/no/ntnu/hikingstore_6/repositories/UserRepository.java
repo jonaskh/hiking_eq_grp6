@@ -1,4 +1,4 @@
-package no.ntnu.xxs.user;
+package no.ntnu.hikingstore_6.repositories;
 
 import java.util.Optional;
 

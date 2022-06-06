@@ -1,4 +1,4 @@
-package no.ntnu.xxs.user.api;
+package no.ntnu.hikingstore_6.models;
 
 public class AuthResponse {
 	private String email;

@@ -1,4 +1,4 @@
-package no.ntnu.xxs.jwt;
+package no.ntnu.hikingstore_6.security;
 import java.io.IOException;
 
 import javax.servlet.FilterChain;

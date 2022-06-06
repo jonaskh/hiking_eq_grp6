@@ -1,7 +1,7 @@
+/*
 package no.ntnu.hikingstore_6.service;
 
 import no.ntnu.hikingstore_6.models.CustomUserDetails;
-import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.repositories.RoleRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,3 +31,4 @@ public class MyUserDetailsService implements UserDetailsService {
         throw new UsernameNotFoundException("No user with that username found");
     }
 }
+*/

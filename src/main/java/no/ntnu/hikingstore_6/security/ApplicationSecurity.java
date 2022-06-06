@@ -1,6 +1,4 @@
-package no.ntnu.xxs;
-
-import javax.servlet.http.HttpServletResponse;
+package no.ntnu.hikingstore_6.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import no.ntnu.xxs.jwt.JwtTokenFilter;
-import no.ntnu.xxs.user.UserRepository;
+import no.ntnu.hikingstore_6.security.JwtTokenFilter;
+import no.ntnu.hikingstore_6.repositories.UserRepository;
 
 
 @EnableWebSecurity(debug = true)

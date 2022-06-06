@@ -60,11 +60,11 @@ public class UserController {
             return "redirect:/users";
         }
     }
-    @GetMapping("/users/delete/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, RedirectAttributes ra) {
+    @GetMapping("/users/delete/{email}")
+    public String showEditForm(@PathVariable("email") String email, RedirectAttributes ra) {
         try {
-            service.delete(id);
-            ra.addFlashAttribute("message","User has been deleted");
+            service.delete(email);
+        ra.addFlashAttribute("message","User has been deleted");
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message", e.getMessage());
         }

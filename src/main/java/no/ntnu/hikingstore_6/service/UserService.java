@@ -30,12 +30,13 @@ public class UserService {
 
     }
 
-    public void delete(Integer id) throws UserNotFoundException {
-        Long count= repo.countById(id);
-        if (count == null || count == 0) {
-            throw new UserNotFoundException("Could not find any users with ID " + id);
+    public void delete(String email) throws UserNotFoundException {
+
+        Optional<User> userToDelete = repo.findByEmail(email);
+        if (userToDelete.isEmpty()) {
+            throw new UserNotFoundException("Could not find any users with email " + email);
         }
-        repo.deleteById(id);
+        repo.delete(userToDelete.get());
     }
 
 

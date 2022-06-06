@@ -18,6 +18,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Table(name = "users")
 public class User implements UserDetails {
 
+	//---------------------------------------------------------------------------------
+	//------------------------FIELDS---------------------------------------------------
+	//---------------------------------------------------------------------------------
+
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
@@ -44,6 +48,14 @@ public class User implements UserDetails {
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "cart_id", referencedColumnName = "id")
+	private Cart cart;
+
+	//---------------------------------------------------------------------------------
+	//------------------------CONSTRUCTORS---------------------------------------------
+	//---------------------------------------------------------------------------------
+
 	public User() { }
 
 	public User(String email, String password, Integer zipcode, String address) {
@@ -54,6 +66,10 @@ public class User implements UserDetails {
 	}
 
 
+
+	//---------------------------------------------------------------------------------
+	//------------------------GETTERS AND SETTERS...-----------------------------------
+	//---------------------------------------------------------------------------------
 	public Integer getZipcode() {
 		return zipcode;
 	}
@@ -69,8 +85,6 @@ public class User implements UserDetails {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -142,4 +156,7 @@ public class User implements UserDetails {
 		this.roles.add(role);
 	}
 
+	public Cart getCart(int id) {
+		return cart;
+	}
 }

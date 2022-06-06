@@ -5,6 +5,7 @@ import no.ntnu.hikingstore_6.repositories.ProductRepository;
 import no.ntnu.hikingstore_6.exceptions.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,5 +37,26 @@ public class ProductService {
             throw new ProductNotFoundException("Could not find any users with ID " + id);
         }
         productRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void increaseAmount(int productId, int amount) throws ProductNotFoundException {
+        Product product = productRepository.findProductById(productId);
+        if (product == null) throw new ProductNotFoundException("Product not found");
+
+        int update = product.getProductAmount() + amount;
+        product.setProductAmount(update);
+        productRepository.save(product);
+    }
+
+    @Transactional
+    public void decreaseAmount(int productId, int amount) throws ProductNotFoundException {
+        Product product = productRepository.findProductById(productId);
+        if (product == null) throw new ProductNotFoundException("Product not found");
+        if (product.getProductAmount() <= 0) throw new ProductNotFoundException("Product out of stock");
+
+        int update = product.getProductAmount() - amount;
+        product.setProductAmount(update);
+        productRepository.save(product);
     }
 }

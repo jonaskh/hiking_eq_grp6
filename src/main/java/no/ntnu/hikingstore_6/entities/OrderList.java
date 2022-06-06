@@ -65,6 +65,21 @@ public class OrderList  {
 
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public Set<ProductInCart> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<ProductInCart> products) {
+        this.products = products;
+    }
 
     public enum OrderStatus {
         /*

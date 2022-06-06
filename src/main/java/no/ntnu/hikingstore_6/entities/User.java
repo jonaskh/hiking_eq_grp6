@@ -1,28 +1,37 @@
 package no.ntnu.hikingstore_6.entities;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.*;
+
+import javax.persistence.*;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
-    @Id
-    @Column(nullable = false,length = 45)
-    private String username;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
-    @Column(nullable = false, length = 64)
-    private String password;
+	@Column(nullable = false, length = 50, unique = true)
+	private String email;
 
-    @Column(nullable = false, length = 20)
-    private String email;
+	@Column(nullable = false, length = 64)
+	private String password;
 
+	@Column(nullable = false, length = 4)
+	private Integer zipcode;
+
+	@Column(nullable = false, length = 100)
+	private String address;
 
     //Set to true default when created
     private boolean enabled = true;
@@ -37,113 +46,102 @@ public class User implements UserDetails {
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
+	public User() { }
 
-    //Full constructor
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    /**
-     * Empty constructor needed for hibernate
-     */
-    public User() {
-    }
+	public User(String email, String password, Integer zipcode, String address) {
+		this.email = email;
+		this.password = password;
+		this.zipcode = zipcode;
+		this.address = address;
+	}
 
 
-    public String getEmail() {
-        return email;
-    }
+	public Integer getZipcode() {
+		return zipcode;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setZipcode(Integer zipcode) {
+		this.zipcode = zipcode;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 
 
-    public String getUsername() {
-        return username;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
+	@Override
+	public String getUsername() {
+		return this.email;
+	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
-    public boolean isActive() {
-        return enabled;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+		}
+		return authorities;
+	}
 
-    public void setActive(boolean active) {
-        this.enabled = active;
-    }
+	public Set<Role> getRoles() {
+		return roles;
+	}
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
 
-    public void addRole (Role role) {
-        this.roles.add(role);
-    }
-
-
-    /*
-    Check to see if user is an admin user.
-     */
-
-    public boolean isAdmin() {
-        boolean admin = false;
-        Iterator<Role> it = roles.iterator();
-        while (!admin && it.hasNext()) {
-            Role role = it.next();
-            if (role.getName().equalsIgnoreCase("ROLE_ADMIN")) {
-                admin = true;
-            }
-        }
-        return admin;
-    }
 }

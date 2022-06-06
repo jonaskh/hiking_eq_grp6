@@ -3,26 +3,46 @@ package no.ntnu.hikingstore_6.entities;
 
 
 
+import no.ntnu.hikingstore_6.repositories.CartItemRepository;
+import no.ntnu.hikingstore_6.service.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
+
+//One cart item, to be placed in cart.
 @Entity
 @Table(name = "cart_items")
 public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cartItem_id")
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    @Column(name = "product_id")
+    private int productID;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    //number of items
+    @Column
     private int quantity;
 
+    //Links to cart using many to one relation.
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
+
+
+    //Empty constructor
+    public CartItem() {
+    }
+
+    public CartItem(Integer id, int productID, int quantity) {
+        this.id = id;
+        this.productID = productID;
+        this.quantity = quantity;
+
+    }
 
     public Integer getId() {
         return id;
@@ -32,20 +52,20 @@ public class CartItem {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProductID() {
+        return productID;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
-    public User getUser() {
-        return user;
+    public Cart getCart() {
+        return cart;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public int getQuantity() {
@@ -60,8 +80,7 @@ public class CartItem {
     public String toString() {
         return "CartItem{" +
                 "id=" + id +
-                ", product=" + product +
-                ", user=" + user +
+                "productID = " + productID +
                 ", quantity=" + quantity +
                 '}';
     }

@@ -1,22 +1,40 @@
 package no.ntnu.hikingstore_6.dtos;
 
+import no.ntnu.hikingstore_6.entities.Product;
+
 public class AddItemToCardDTO {
     private int id;
     private String productName;
     private String productCategory;
     private int price;
+    private String size;
     private String productImage;
     private String productDesc;
     private int productAmount;
 
-    public AddItemToCardDTO(int id, String productName, String productCategory, int price, String productImage, String productDesc, int productAmount) {
+    public AddItemToCardDTO(int id, String productName, String productCategory, int price, String productImage, String productDesc, int productAmount, String size) {
         this.id = id;
         this.productName = productName;
         this.productCategory = productCategory;
         this.price = price;
+        this.size = size;
         this.productImage = productImage;
         this.productDesc = productDesc;
         this.productAmount = productAmount;
+    }
+
+    public Product createProduct() {
+        Product product = new Product();
+        product.setId(this.id);
+        product.setProductName(this.productName);
+        product.setProductCategory(this.productCategory);
+        product.setPrice(this.price);
+        product.setSize(this.size);
+        product.setProductImage(this.productImage);
+        product.setProductDesc(this.productDesc);
+        product.setProductAmount(this.productAmount);
+
+        return product;
     }
 
     public int getId() {
@@ -25,6 +43,14 @@ public class AddItemToCardDTO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 
     public String getProductName() {

@@ -1,4 +1,4 @@
-package no.ntnu.xxshikingstore;
+/*package no.ntnu.xxshikingstore;
 
 
 import no.ntnu.hikingstore_6.entities.CartItem;
@@ -63,4 +63,4 @@ public class ShoppingCartTests {
     }
 
 
-}
+}*/

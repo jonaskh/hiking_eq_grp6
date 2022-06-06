@@ -1,13 +1,14 @@
-package no.ntnu.hikingstore_6.repositories;
-
-import no.ntnu.hikingstore_6.entities.User;
-import org.springframework.data.repository.CrudRepository;
+package no.ntnu.xxs.user;
 
 import java.util.Optional;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+import no.ntnu.hikingstore_6.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-    @Override
-    void delete(User entity);
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
+	
+	Optional<User> findByEmail(String email);
+	
 }

@@ -1,117 +1,133 @@
-package no.ntnu.hikingstore_6.entities;
+package no.ntnu.xxs.user;
+
+import java.util.*;
 
 import javax.persistence.*;
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
-    @Id
-    @Column(nullable = false,length = 45)
-    private String username;
+	@ManyToMany
+	@JoinTable(
+			name = "users_roles",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
+	private Set<Role> roles = new HashSet<>();
 
-    @Column(nullable = false, length = 20)
-    private String password;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@Column(nullable = false, length = 50, unique = true)
+	private String email;
+	
+	@Column(nullable = false, length = 64)
+	private String password;
 
-    @Column(nullable = false, length = 20)
-    private String email;
+	@Column(nullable = false, length = 4)
+	private Integer zipcode;
 
+	@Column(nullable = false, length = 100)
+	private String address;
 
-    private boolean enabled = true;
+	public Integer getZipcode() {
+		return zipcode;
+	}
 
+	public void setZipcode(Integer zipcode) {
+		this.zipcode = zipcode;
+	}
 
+	public String getAddress() {
+		return address;
+	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
+	public User() { }
+	
+	public User(String email, String password, Integer zipcode, String address) {
+		this.email = email;
+		this.password = password;
+		this.zipcode = zipcode;
+		this.address = address;
+	}
 
-    /*
-    User relation to the role table that determines the roles of the user.
-     */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new LinkedHashSet<>();
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    //Full constructor
-    public User(String username, String email, String password) {
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    /**
-     * Empty constructor needed for hibernate
-     */
-    public User() {
-    }
+	public String getPassword() {
+		return password;
+	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	@Override
+	public String getUsername() {
+		return this.email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 
-    public String getUsername() {
-        return username;
-    }
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+		}
+		return authorities;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public Set<Role> getRoles() {
+		return roles;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 
-    public boolean isActive() {
-        return enabled;
-    }
+	public void addRole(Role role) {
+		this.roles.add(role);
+	}
 
-    public void setActive(boolean active) {
-        this.enabled = active;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void addRole (Role role) {
-        this.roles.add(role);
-    }
-
-
-    /*
-    Check to see if user is an admin user.
-     */
-
-    public boolean isAdmin() {
-        boolean admin = false;
-        Iterator<Role> it = roles.iterator();
-        while (!admin && it.hasNext()) {
-            Role role = it.next();
-            if (role.getName().equalsIgnoreCase("ROLE_ADMIN")) {
-                admin = true;
-            }
-        }
-        return admin;
-    }
 }

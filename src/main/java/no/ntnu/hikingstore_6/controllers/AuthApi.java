@@ -2,6 +2,8 @@ package no.ntnu.xxs.user.api;
 
 import javax.validation.Valid;
 
+import no.ntnu.hikingstore_6.models.AuthRequest;
+import no.ntnu.hikingstore_6.models.AuthResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import no.ntnu.xxs.jwt.JwtTokenUtil;
-import no.ntnu.xxs.user.User;
+import no.ntnu.hikingstore_6.security.JwtTokenUtil;
+import no.ntnu.hikingstore_6.entities.User;
 
 @RestController
 public class AuthApi {

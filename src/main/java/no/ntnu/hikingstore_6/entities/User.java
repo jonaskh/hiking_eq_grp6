@@ -33,8 +33,6 @@ public class User implements UserDetails {
 	@Column(nullable = false, length = 100)
 	private String address;
 
-    //Set to true default when created
-    private boolean enabled = true;
 
     /*
     User relation to the role table that determines the roles of the user.

@@ -35,6 +35,8 @@ public class CartController {
     JwtTokenUtil jwtTokenUtil;
 
 
+    @RolesAllowed("ROLE_CUSTOMER")
+    @GetMapping
     public ResponseEntity<Cart> getuserCart(@RequestHeader("Authorization")
                                                     String authorization) {
         ResponseEntity response;

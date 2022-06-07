@@ -102,6 +102,12 @@ public class Product {
         this.productDesc = productDesc;
     }
 
+
+    public ProductInCart toProductInCart(Product product) {
+
+        return new ProductInCart(product);
+    }
+
     @Override
     public String toString() {
         return "User{" +

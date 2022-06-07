@@ -159,4 +159,8 @@ public class User implements UserDetails {
 	public Cart getCart(int id) {
 		return cart;
 	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 }

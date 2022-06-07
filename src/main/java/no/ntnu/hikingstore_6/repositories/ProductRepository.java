@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-    public Long countById(Integer id);
+    Integer countById(Integer id);
     Product findProductById(Integer id);
 
 }

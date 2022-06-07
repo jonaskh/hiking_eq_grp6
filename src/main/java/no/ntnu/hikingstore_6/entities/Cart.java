@@ -10,13 +10,14 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "id")
-    private long cartID;
+    private Integer cartID;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "cart")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, mappedBy = "cart")
+    @Column(name = "product_id_in_cart")
     private Set<ProductInCart> productsInCart = new HashSet<>();
 
 
@@ -27,7 +28,7 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(long cartID, User user, Set<ProductInCart> productsInCart) {
+    public Cart(int cartID, User user, Set<ProductInCart> productsInCart) {
         this.cartID = cartID;
         this.user = user;
         this.productsInCart = productsInCart;
@@ -40,6 +41,11 @@ public class Cart {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Integer getCartID() {
+        return cartID;
+    }
+
 
     public Set<ProductInCart> getProducts() {
         return productsInCart;

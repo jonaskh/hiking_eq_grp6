@@ -38,7 +38,7 @@ public class ShoppingCartService {
      * @param id
      * @return
      */
-    public Cart getCart(Long id) {
+    public Cart getCart(Integer id) {
         Cart cart = new Cart();
         Optional<Cart> optionalCart = cartRepository.findById(this.getCartID(id));
 
@@ -48,7 +48,7 @@ public class ShoppingCartService {
         return cart;
     }
 
-    public void addProductToCart(Long userid, Product product) {
+    public void addProductToCart(Integer userid, Product product) {
         ProductInCart productToAdd;
         Optional<ProductInCart> optionalProduct = this.productInCartRepository.findProductInCart(this.getCartID(userid),product.getId());
 
@@ -69,7 +69,7 @@ public class ShoppingCartService {
     }
 
 
-    public Long getCartID(Long userID) {
+    public Integer getCartID(Integer userID) {
 
         return this.userRepository.findCartID(userID);
     }

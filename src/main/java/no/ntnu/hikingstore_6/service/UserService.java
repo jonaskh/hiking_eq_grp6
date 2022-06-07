@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -54,22 +55,23 @@ public class UserService {
         }
     }
 
-    public User update(User user) {
-        User newUser = new User();
-        Optional<User> optionalUser = userRepository.findByEmail(newUser.getEmail());
+    public User update(User user) throws UserNotFoundException {
+        Optional<User> result = userRepository.findByEmail(user.getEmail());
 
-        if(optionalUser.isEmpty()) {
-            throw new UsernameNotFoundException("newUser not found");
-        } else {
-            newUser = optionalUser.get();
+        if (result.isEmpty()){
+            throw new UserNotFoundException("Could not find any users with email " + user.getEmail());
         }
 
-        newUser.setEmail(newUser.getEmail());
-        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
-        newUser.setAddress(newUser.getAddress());
-        newUser.setZipcode(newUser.getZipcode());
+        User updatedUser = result.get();
 
-        return userRepository.save(newUser);
+        updatedUser.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        updatedUser.setAddress(user.getAddress());
+
+        updatedUser.setZipcode(user.getZipcode());
+
+        return userRepository.save(updatedUser);
+
     }
 
     public User get(Integer id) throws UserNotFoundException {
@@ -87,6 +89,8 @@ public class UserService {
         if (userToDelete.isEmpty()) {
             throw new UserNotFoundException("Could not find any users with email " + email);
         }
+
+
         userRepository.delete(userToDelete.get());
     }
 

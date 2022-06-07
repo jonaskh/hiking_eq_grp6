@@ -1,6 +1,8 @@
 package no.ntnu.hikingstore_6.controllers;
 
+import no.ntnu.hikingstore_6.entities.Cart;
 import no.ntnu.hikingstore_6.entities.Product;
+import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.repositories.ProductRepository;
 import no.ntnu.hikingstore_6.service.ProductService;
 import no.ntnu.hikingstore_6.exceptions.ProductNotFoundException;
@@ -8,16 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class ProductController {
@@ -77,6 +77,13 @@ public class ProductController {
     @GetMapping("/test")
     @RolesAllowed({"ROLE_CUSTOMER"})
     public List<Product> list() {
+        return service.listAll();
+    }
+
+
+    @GetMapping("")
+    public List<Product> listProductsInCart() {
+
         return service.listAll();
     }
 

@@ -60,6 +60,10 @@ public class Cart {
         this.productsInCart.add(productInCart);
     }
 
+    public void removeProduct(ProductInCart product) {
+        this.productsInCart.remove(product);
+    }
+
 
 
 

@@ -65,8 +65,20 @@ public class ShoppingCartService {
             this.productInCartRepository.save(productToAdd);
             this.cartRepository.save(cart);
         }
-
     }
+
+    public void removeItemFromCart(int userId, int cartItemId) {
+        Optional<ProductInCart> result = this.productInCartRepository.findById(cartItemId);
+        if (result.isPresent()) {
+            ProductInCart cartItem = result.get();
+                cartItem.decreaseAmount();
+                this.productInCartRepository.save(cartItem);
+                this.productInCartRepository.delete(cartItem);
+                Cart cart = this.getCart(userId);
+                cart.removeProduct(cartItem);
+                this.cartRepository.save(cart);
+            }
+        }
 
 
 

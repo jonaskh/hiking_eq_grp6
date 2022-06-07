@@ -79,7 +79,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public ResponseEntity<User> save(@RequestBody User user) {
         try {
             User newUser = userService.save(user);
@@ -87,6 +87,23 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }*/
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
+
+        return "signup_form";
+    }
+
+
+    @PostMapping("/process_register")
+    public String processRegister(User user) {
+
+
+        userService.save(user);
+
+        return "register_success";
     }
 
 

@@ -41,12 +41,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         try {
 
-
-
             Role newUserRole = roleRepository.findByName("ROLE_CUSTOMER");
             user.addRole(newUserRole);
-
-
 
             return userRepository.save(user);
 

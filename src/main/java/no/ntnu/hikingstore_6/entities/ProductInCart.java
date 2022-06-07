@@ -1,5 +1,7 @@
 package no.ntnu.hikingstore_6.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,8 +15,8 @@ public class ProductInCart {
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.REMOVE)
     @JoinColumn(name = "cart_id",referencedColumnName = "id")
+    @JsonIgnore
     private Cart cart;
-
 
     @Column(nullable = false)
     private String productName;

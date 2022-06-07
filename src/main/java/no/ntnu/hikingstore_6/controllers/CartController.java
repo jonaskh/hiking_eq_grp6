@@ -2,6 +2,8 @@ package no.ntnu.hikingstore_6.controllers;
 
 import no.ntnu.hikingstore_6.dtos.AddItemToCardDTO;
 import no.ntnu.hikingstore_6.entities.Cart;
+import no.ntnu.hikingstore_6.entities.Product;
+import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
 import no.ntnu.hikingstore_6.security.JwtTokenUtil;
 import no.ntnu.hikingstore_6.service.ProductService;
@@ -13,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Set;
 
 @RequestMapping("/api/cart")
 @RestController
@@ -46,11 +49,21 @@ public class CartController {
         if (cart == null) {
             response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            response = new ResponseEntity<>(HttpStatus.OK);
+            response = new ResponseEntity<>(cart, HttpStatus.OK);
         }
         return response;
-
     }
+
+    @GetMapping("/test")
+    @RolesAllowed("ROLE_CUSTOMER")
+    public Set<ProductInCart> listProductsInCart(@RequestHeader("Authorization")
+                                                 String authorization) {
+
+        Integer userID = this.getUserID(authorization);
+        Cart cart = this.cartService.getCart(userID);
+        return cart.getProducts();
+    }
+
 
 
     /**
@@ -62,13 +75,13 @@ public class CartController {
      */
     @PostMapping("/add")
     @RolesAllowed("{ROLE_CUSTOMER}")
-    public ResponseEntity<?> addItemToCart(
+    public ResponseEntity<Product> addItemToCart(
             @RequestHeader("Authorization") String authorization,
             @RequestBody AddItemToCardDTO requestBody) {
 
         int userID = this.getUserID(authorization);
         this.cartService.addProductToCart(userID,requestBody.createProduct());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 

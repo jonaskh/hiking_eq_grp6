@@ -1,5 +1,7 @@
 package no.ntnu.hikingstore_6.entities;
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +20,7 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER, mappedBy = "cart")
     @Column(name = "product_id_in_cart")
+    @JsonIgnore
     private Set<ProductInCart> productsInCart = new HashSet<>();
 
 
@@ -34,6 +37,7 @@ public class Cart {
         this.productsInCart = productsInCart;
     }
 
+
     public User getUser() {
         return user;
     }
@@ -47,6 +51,7 @@ public class Cart {
     }
 
 
+    @JsonIgnore
     public Set<ProductInCart> getProducts() {
         return productsInCart;
     }

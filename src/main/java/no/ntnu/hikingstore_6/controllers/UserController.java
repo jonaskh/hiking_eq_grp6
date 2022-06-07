@@ -10,12 +10,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.security.RolesAllowed;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -30,6 +30,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
+    @RolesAllowed("ROLE_ADMIN")
     public String showUserList(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);
@@ -78,7 +79,7 @@ public class UserController {
 
     }
 
-    @PostMapping("/register")
+    /*@PostMapping("/register")
     public ResponseEntity<User> save(@RequestBody User user) {
         try {
             User newUser = userService.save(user);
@@ -86,6 +87,42 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
+    }*/
+
+    @GetMapping("/register")
+    public String showRegistrationForm(Model model) {
+        model.addAttribute("user", new User());
+
+        return "signup_form";
+    }
+
+
+    @PostMapping("/process_register")
+    public String processRegister(User user) {
+
+
+        userService.save(user);
+
+        return "register_success";
+    }
+
+
+    @DeleteMapping("/delete/user/{email}")
+    @RolesAllowed("ROLE_ADMIN")
+    public ResponseEntity<User> delete(@PathVariable("email") String email) throws UserNotFoundException {
+        userService.delete(email);
+
+        return ResponseEntity.ok().build();
+    }
+
+
+    @PutMapping("/edit/user/{email}")
+    @RolesAllowed("ROLE_ADMIN")
+    public ResponseEntity update(@PathVariable("email") String email, @Valid @RequestBody User user) throws UserNotFoundException {
+
+        userService.update(user);
+
+        return ResponseEntity.ok().build();
     }
 
 

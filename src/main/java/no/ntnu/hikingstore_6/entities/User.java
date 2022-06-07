@@ -48,9 +48,9 @@ public class User implements UserDetails {
     )
     private Set<Role> roles = new LinkedHashSet<>();
 
-	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "cart_id", referencedColumnName = "id")
-	private Cart cart;
+	private Cart cart = new Cart();
 
 	//---------------------------------------------------------------------------------
 	//------------------------CONSTRUCTORS---------------------------------------------
@@ -156,7 +156,15 @@ public class User implements UserDetails {
 		this.roles.add(role);
 	}
 
-	public Cart getCart(int id) {
+	public Integer getCartID() {
+		return cart.getCartID();
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
+	public Cart getCart() {
 		return cart;
 	}
 }

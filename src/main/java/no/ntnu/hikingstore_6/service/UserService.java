@@ -1,28 +1,79 @@
 package no.ntnu.hikingstore_6.service;
 
+import no.ntnu.hikingstore_6.entities.Cart;
+import no.ntnu.hikingstore_6.entities.Role;
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.exceptions.UserNotFoundException;
+import no.ntnu.hikingstore_6.repositories.CartRepository;
+import no.ntnu.hikingstore_6.repositories.RoleRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
-    @Autowired private UserRepository repo;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    CartRepository cartRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     public List<User> listAll() {
-        return(List<User>) repo.findAll();
+        return(List<User>) userRepository.findAll();
     }
 
-    public void save(User user) {
-        repo.save(user);
+    @Transactional
+    public User save(User user) {
+        //register
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        try {
+
+
+
+            Role newUserRole = roleRepository.findByName("ROLE_CUSTOMER");
+            user.addRole(newUserRole);
+
+
+
+            return userRepository.save(user);
+
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User can't be registered");
+        }
+    }
+
+    public User update(User user) {
+        User newUser = new User();
+        Optional<User> optionalUser = userRepository.findByEmail(newUser.getEmail());
+
+        if(optionalUser.isEmpty()) {
+            throw new UsernameNotFoundException("newUser not found");
+        } else {
+            newUser = optionalUser.get();
+        }
+
+        newUser.setEmail(newUser.getEmail());
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        newUser.setAddress(newUser.getAddress());
+        newUser.setZipcode(newUser.getZipcode());
+
+        return userRepository.save(newUser);
     }
 
     public User get(Integer id) throws UserNotFoundException {
-        Optional<User> result = repo.findById(id);
+        Optional<User> result = userRepository.findById(id);
         if ( result.isPresent()) {
             return result.get();
         }
@@ -32,28 +83,13 @@ public class UserService {
 
     public void delete(String email) throws UserNotFoundException {
 
-        Optional<User> userToDelete = repo.findByEmail(email);
+        Optional<User> userToDelete = userRepository.findByEmail(email);
         if (userToDelete.isEmpty()) {
             throw new UserNotFoundException("Could not find any users with email " + email);
         }
-        repo.delete(userToDelete.get());
+        userRepository.delete(userToDelete.get());
     }
 
 
-    /**
-
-    public User getCurrentlyLoggedInUser(Authentication authentication) {
-
-        if(authentication == null) return null;
-
-        User user = null;
-        Object principal = authentication.getPrincipal();
-
-        user = CustomerUserDetails
-
-
-        return user;
-    }
-     */
 
 }

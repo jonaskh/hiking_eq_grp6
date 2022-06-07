@@ -13,7 +13,7 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     Optional<User> findByEmail(String email);
 
     @Query(value = "select cart_id from users where id = ?",nativeQuery = true)
-    Long findCartID(Long id);
+    Integer findCartID(Integer id);
 }
 
 

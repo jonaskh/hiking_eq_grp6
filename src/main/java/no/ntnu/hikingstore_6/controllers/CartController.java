@@ -2,10 +2,8 @@ package no.ntnu.hikingstore_6.controllers;
 
 import no.ntnu.hikingstore_6.dtos.AddItemToCardDTO;
 import no.ntnu.hikingstore_6.entities.Cart;
-import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
 import no.ntnu.hikingstore_6.security.JwtTokenUtil;
-import no.ntnu.hikingstore_6.service.ProductInCartService;
 import no.ntnu.hikingstore_6.service.ProductService;
 import no.ntnu.hikingstore_6.service.ShoppingCartService;
 import no.ntnu.hikingstore_6.service.UserService;
@@ -31,19 +29,18 @@ public class CartController {
     ProductService productService;
 
     @Autowired
-    ProductInCartService productInCartService;
-
-    @Autowired
     ProductInCartRepository productInCartRepository;
 
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
 
+    @RolesAllowed("ROLE_CUSTOMER")
+    @GetMapping
     public ResponseEntity<Cart> getuserCart(@RequestHeader("Authorization")
                                                     String authorization) {
         ResponseEntity response;
-        Long userID = this.getUserID(authorization);
+        Integer userID = this.getUserID(authorization);
 
         Cart cart = this.cartService.getCart(userID);
         if (cart == null) {
@@ -69,7 +66,7 @@ public class CartController {
             @RequestHeader("Authorization") String authorization,
             @RequestBody AddItemToCardDTO requestBody) {
 
-        long userID = this.getUserID(authorization);
+        int userID = this.getUserID(authorization);
         this.cartService.addProductToCart(userID,requestBody.createProduct());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -80,7 +77,7 @@ public class CartController {
      * @param jwtHeader the full jwt with header.
      * @return userID
      */
-    private long getUserID(String jwtHeader) {
+    private Integer getUserID(String jwtHeader) {
         String jwt = jwtHeader.substring(7);
         return jwtTokenUtil.extractUserID(jwt);
     }

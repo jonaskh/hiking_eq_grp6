@@ -8,7 +8,7 @@ public class ProductInCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_in_cart_ID")
-    private int id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.REMOVE)

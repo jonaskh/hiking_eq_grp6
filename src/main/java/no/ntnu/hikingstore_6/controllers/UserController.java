@@ -5,6 +5,7 @@ import no.ntnu.hikingstore_6.exceptions.UserNotFoundException;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import no.ntnu.hikingstore_6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -77,17 +78,18 @@ public class UserController {
 
     }
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity<User> save(@RequestBody User user) {
         try {
-            return ResponseEntity.ok(userService.save(user));
+            User newUser = userService.save(user);
+            return  new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
     }
 
 
-    @PostMapping("/process_register")
+    /*@PostMapping("/process_register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -96,7 +98,7 @@ public class UserController {
         userRepo.save(user);
 
         return "register_success";
-    }
+    }*/
 
 
 

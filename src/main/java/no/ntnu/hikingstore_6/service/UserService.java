@@ -1,9 +1,11 @@
 package no.ntnu.hikingstore_6.service;
 
 import no.ntnu.hikingstore_6.entities.Cart;
+import no.ntnu.hikingstore_6.entities.Role;
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.exceptions.UserNotFoundException;
 import no.ntnu.hikingstore_6.repositories.CartRepository;
+import no.ntnu.hikingstore_6.repositories.RoleRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,29 +21,33 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-
     @Autowired
     CartRepository cartRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     public List<User> listAll() {
         return(List<User>) userRepository.findAll();
     }
-
 
     @Transactional
     public User save(User user) {
         //register
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         try {
-            User savedUser = userRepository.save(user);
 
-            // initial Cart
-            Cart savedCart = cartRepository.save(new Cart(savedUser));
-            savedUser.setCart(savedCart);
-            return userRepository.save(savedUser);
+
+
+            Role newUserRole = roleRepository.findByName("ROLE_CUSTOMER");
+            user.addRole(newUserRole);
+
+
+
+            return userRepository.save(user);
 
         } catch (Exception e) {
             throw new UsernameNotFoundException("User can't be registered");
@@ -83,7 +89,6 @@ public class UserService {
         }
         userRepository.delete(userToDelete.get());
     }
-
 
 
 

@@ -37,7 +37,7 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        userRepository.deleteAll();
+
         Optional<User> existingUser = userRepository.findByEmail("test@uis.no");
 
 

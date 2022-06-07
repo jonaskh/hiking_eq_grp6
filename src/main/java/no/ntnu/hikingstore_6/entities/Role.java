@@ -1,6 +1,8 @@
 package no.ntnu.hikingstore_6.entities;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -17,6 +19,9 @@ public class Role {
         this.id = id;
         this.name = name;
     }
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users = new LinkedHashSet<>();
 
     public Role(String name) {
         this.name = name;
@@ -40,6 +45,14 @@ public class Role {
 
     public Role(Integer id) {
         this.id = id;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 

@@ -30,6 +30,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
+    @RolesAllowed("ROLE_ADMIN")
     public String showUserList(Model model) {
         List<User> listUsers = service.listAll();
         model.addAttribute("listUsers", listUsers);

@@ -40,7 +40,7 @@ public class CartController {
     public ResponseEntity<Cart> getuserCart(@RequestHeader("Authorization")
                                                     String authorization) {
         ResponseEntity response;
-        Long userID = this.getUserID(authorization);
+        Integer userID = this.getUserID(authorization);
 
         Cart cart = this.cartService.getCart(userID);
         if (cart == null) {
@@ -66,7 +66,7 @@ public class CartController {
             @RequestHeader("Authorization") String authorization,
             @RequestBody AddItemToCardDTO requestBody) {
 
-        long userID = this.getUserID(authorization);
+        int userID = this.getUserID(authorization);
         this.cartService.addProductToCart(userID,requestBody.createProduct());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -77,7 +77,7 @@ public class CartController {
      * @param jwtHeader the full jwt with header.
      * @return userID
      */
-    private long getUserID(String jwtHeader) {
+    private Integer getUserID(String jwtHeader) {
         String jwt = jwtHeader.substring(7);
         return jwtTokenUtil.extractUserID(jwt);
     }

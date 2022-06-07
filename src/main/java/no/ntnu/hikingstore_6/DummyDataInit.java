@@ -1,13 +1,9 @@
 package no.ntnu.hikingstore_6;
 
-import no.ntnu.hikingstore_6.entities.Product;
+import no.ntnu.hikingstore_6.entities.*;
 
-import no.ntnu.hikingstore_6.entities.ProductInCart;
-import no.ntnu.hikingstore_6.entities.User;
-import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
-import no.ntnu.hikingstore_6.repositories.ProductRepository;
-import no.ntnu.hikingstore_6.repositories.RoleRepository;
-import no.ntnu.hikingstore_6.repositories.UserRepository;
+import no.ntnu.hikingstore_6.repositories.*;
+import no.ntnu.hikingstore_6.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,28 +29,33 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
     @Autowired
     private ProductInCartRepository productInCartRepository;
 
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private ShoppingCartService cartService;
+
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-
         Optional<User> existingUser = userRepository.findByEmail("test@uis.no");
-
 
 
         if (existingUser.isEmpty()) {
 
             logger.info("Starting dummy init...");
 
-            Product product = new Product("jacket","Jackets",1000,"Large","asd","stygg",9);
-            Product product2 = new Product("bottle","Bottles",1000,"Venti","asd","stygg",9);
+            Role role = new Role(1,"ROLE_ADMIN");
+            Role role2 = new Role(2,"ROLE_CUSTOMER");
+            roleRepository.save(role);
+            roleRepository.save(role2);
 
-            productRepository.save(product);
-            productRepository.save(product2);
+            Product sweater = new Product("Sweater","Sweaters",1000,"Large","asd","The classic sweater from devold.",9);
+            Product greySweater = new Product("Grey Sweater","Sweaters",1000,"Medium","asd","New sweater from bergans.",9);
 
-
-
-
+            productRepository.save(sweater);
+            productRepository.save(greySweater);
 
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String pw1 = "test2022";
@@ -67,13 +68,9 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
             customer2.addRole(roleRepository.findById(2).get());
             userRepository.save(customer2);
 
-            ProductInCart productInCart1 = product.toProductInCart(product);
-            ProductInCart productInCart2 = product2.toProductInCart(product2);
 
-            customer1.getCart(customer1.getId()).addProductToCart(productInCart1);
-            customer2.getCart(customer2.getId()).addProductToCart(productInCart2);
-            productInCartRepository.save(productInCart1);
-            productInCartRepository.save(productInCart2);
+            cartService.addProductToCart(customer1.getCartID(),sweater);
+            cartService.addProductToCart(customer2.getCartID(),greySweater);
 
 
 

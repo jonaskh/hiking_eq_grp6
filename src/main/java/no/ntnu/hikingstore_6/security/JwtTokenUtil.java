@@ -64,10 +64,10 @@ public class JwtTokenUtil {
 				.getBody();
 	}
 
-	public long extractUserID(String token) {
+	public Integer extractUserID(String token) {
 		String jwtSubject = parseClaims(token).getSubject();
 		String[] jwtID = jwtSubject.split(",");
-		long userID = Long.parseLong(jwtID[0]);
+		int userID = (Integer.parseInt(jwtID[0]));
 
 		return userID;
 	}

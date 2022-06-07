@@ -156,11 +156,15 @@ public class User implements UserDetails {
 		this.roles.add(role);
 	}
 
-	public Cart getCart(int id) {
-		return cart;
+	public Integer getCartID() {
+		return cart.getCartID();
 	}
 
 	public void setCart(Cart cart) {
 		this.cart = cart;
+	}
+
+	public Cart getCart() {
+		return cart;
 	}
 }

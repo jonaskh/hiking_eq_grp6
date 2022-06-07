@@ -18,7 +18,7 @@ import no.ntnu.hikingstore_6.security.JwtTokenFilter;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 
 
-@EnableWebSecurity(debug = true)
+@EnableWebSecurity
 @EnableGlobalMethodSecurity ( prePostEnabled = false, jsr250Enabled = true)
 public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 

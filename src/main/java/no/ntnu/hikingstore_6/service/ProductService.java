@@ -32,7 +32,7 @@ public class ProductService {
     }
 
     public void delete(Integer id) throws ProductNotFoundException {
-        Long count= productRepository.countById(id);
+        Integer count= productRepository.countById(id);
         if (count == null || count == 0) {
             throw new ProductNotFoundException("Could not find any users with ID " + id);
         }

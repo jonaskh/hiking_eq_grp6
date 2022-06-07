@@ -1,14 +1,8 @@
 package no.ntnu.hikingstore_6;
 
-import no.ntnu.hikingstore_6.entities.Cart;
-import no.ntnu.hikingstore_6.entities.Product;
+import no.ntnu.hikingstore_6.entities.*;
 
-import no.ntnu.hikingstore_6.entities.ProductInCart;
-import no.ntnu.hikingstore_6.entities.User;
-import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
-import no.ntnu.hikingstore_6.repositories.ProductRepository;
-import no.ntnu.hikingstore_6.repositories.RoleRepository;
-import no.ntnu.hikingstore_6.repositories.UserRepository;
+import no.ntnu.hikingstore_6.repositories.*;
 import no.ntnu.hikingstore_6.service.ShoppingCartService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,21 +30,26 @@ public class DummyDataInit implements ApplicationListener<ApplicationReadyEvent>
     private ProductInCartRepository productInCartRepository;
 
     @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
     private ShoppingCartService cartService;
 
     private final Logger logger = LoggerFactory.getLogger("DummyInit");
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-
         Optional<User> existingUser = userRepository.findByEmail("test@uis.no");
-
-
 
 
         if (existingUser.isEmpty()) {
 
             logger.info("Starting dummy init...");
+
+            Role role = new Role(1,"ROLE_ADMIN");
+            Role role2 = new Role(2,"ROLE_CUSTOMER");
+            roleRepository.save(role);
+            roleRepository.save(role2);
 
             Product sweater = new Product("Sweater","Sweaters",1000,"Large","asd","The classic sweater from devold.",9);
             Product greySweater = new Product("Grey Sweater","Sweaters",1000,"Medium","asd","New sweater from bergans.",9);

@@ -16,7 +16,7 @@ public class Cart {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, mappedBy = "cart")
+            fetch = FetchType.EAGER, mappedBy = "cart")
     @Column(name = "product_id_in_cart")
     private Set<ProductInCart> productsInCart = new HashSet<>();
 

@@ -32,7 +32,7 @@ public class ProductService {
     }
 
     public void delete(Integer id) throws ProductNotFoundException {
-        Integer count = productRepository.countById(id);
+        Integer count= productRepository.countById(id);
         if (count == null || count == 0) {
             throw new ProductNotFoundException("Could not find any users with ID " + id);
         }
@@ -40,30 +40,23 @@ public class ProductService {
     }
 
     @Transactional
-    public void increaseAmount(Integer productId, int amount) throws ProductNotFoundException {
-        Optional<Product> optionalProduct = productRepository.findById(productId);
-        if(optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
-            int update = product.getProductAmount() + amount;
-            product.setProductAmount(update);
-            productRepository.save(product);
-        } else {
-            throw new ProductNotFoundException("Product not found");
-        }
+    public void increaseAmount(int productId, int amount) throws ProductNotFoundException {
+        Product product = productRepository.findProductById(productId);
+        if (product == null) throw new ProductNotFoundException("Product not found");
 
-
+        int update = product.getProductAmount() + amount;
+        product.setProductAmount(update);
+        productRepository.save(product);
     }
 
     @Transactional
-    public void decreaseAmount(Integer productId, int amount) throws ProductNotFoundException {
-        Optional<Product> optionalProduct = productRepository.findById(productId);
-        if (optionalProduct.isPresent()) {
-            Product product = optionalProduct.get();
-            int update = product.getProductAmount() - amount;
-            product.setProductAmount(update);
-            productRepository.save(product);
-        } else {
-            throw new ProductNotFoundException("Product not found");
-        }
+    public void decreaseAmount(int productId, int amount) throws ProductNotFoundException {
+        Product product = productRepository.findProductById(productId);
+        if (product == null) throw new ProductNotFoundException("Product not found");
+        if (product.getProductAmount() <= 0) throw new ProductNotFoundException("Product out of stock");
+
+        int update = product.getProductAmount() - amount;
+        product.setProductAmount(update);
+        productRepository.save(product);
     }
 }

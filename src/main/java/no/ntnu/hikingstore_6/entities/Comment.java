@@ -1,6 +1,8 @@
 package no.ntnu.hikingstore_6.entities;
 
 
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -21,6 +23,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
 

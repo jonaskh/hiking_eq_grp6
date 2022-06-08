@@ -1,6 +1,7 @@
 package no.ntnu.hikingstore_6.service;
 
 
+import no.ntnu.hikingstore_6.dtos.AddItemToCardDTO;
 import no.ntnu.hikingstore_6.entities.Cart;
 import no.ntnu.hikingstore_6.entities.OrderList;
 import no.ntnu.hikingstore_6.entities.Product;
@@ -10,6 +11,7 @@ import no.ntnu.hikingstore_6.exceptions.ProductNotFoundException;
 import no.ntnu.hikingstore_6.repositories.CartRepository;
 import no.ntnu.hikingstore_6.repositories.OrderRepository;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
+import no.ntnu.hikingstore_6.repositories.ProductRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,9 @@ public class ShoppingCartService {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    ProductRepository productRepository;
 
 
     private int getUserId(User user)  {
@@ -54,10 +59,10 @@ public class ShoppingCartService {
 
     public void addProductToCart(Integer userid, Product product) {
         ProductInCart productToAdd;
-        Optional<ProductInCart> optionalProduct = this.productInCartRepository.findProductInCart(this.getCartID(userid),product.getId());
+        Optional<Product> optionalProduct = this.productRepository.findProductById(product.getId());
 
-        if(optionalProduct.isPresent()) {
-            productToAdd = optionalProduct.get();
+        if(optionalProduct.isPresent() && productInCartRepository.findById(product.getId()).isPresent()) {
+            productToAdd = productInCartRepository.findProductInCart(userid,product.getId()).get();
             productToAdd.incrementAmount();
             this.productInCartRepository.save(productToAdd);
         } else {
@@ -69,8 +74,21 @@ public class ShoppingCartService {
             this.productInCartRepository.save(productToAdd);
             this.cartRepository.save(cart);
         }
-
     }
+
+    public void removeItemFromCart(int userId, int cartItemId) {
+        Optional<ProductInCart> result = this.productInCartRepository.findById(cartItemId);
+        if (result.isPresent()) {
+            ProductInCart cartItem = result.get();
+                cartItem.decreaseAmount();
+                this.productInCartRepository.save(cartItem);
+                this.productInCartRepository.delete(cartItem);
+                Cart cart = this.getCart(userId);
+                cart.removeProduct(cartItem);
+                this.cartRepository.save(cart);
+            }
+        }
+
 
 
     public Integer getCartID(Integer userID) {

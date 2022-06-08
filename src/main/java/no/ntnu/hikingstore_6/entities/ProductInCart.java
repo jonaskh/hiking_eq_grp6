@@ -15,8 +15,8 @@ public class ProductInCart {
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = CascadeType.REMOVE)
     @JoinColumn(name = "cart_id",referencedColumnName = "id")
+    @JsonIgnore
     private Cart cart;
-
 
     @Column(nullable = false)
     private String productName;

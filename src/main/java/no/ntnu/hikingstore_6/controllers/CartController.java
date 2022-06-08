@@ -1,7 +1,10 @@
 package no.ntnu.hikingstore_6.controllers;
 
 import no.ntnu.hikingstore_6.dtos.AddItemToCardDTO;
+import no.ntnu.hikingstore_6.dtos.DeleteFromCartDTO;
 import no.ntnu.hikingstore_6.entities.Cart;
+import no.ntnu.hikingstore_6.entities.Product;
+import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
 import no.ntnu.hikingstore_6.security.JwtTokenUtil;
 import no.ntnu.hikingstore_6.service.ProductService;
@@ -13,10 +16,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Set;
 
 @RequestMapping("/api/cart")
 @RestController
-@CrossOrigin
 public class CartController {
 
     @Autowired
@@ -34,23 +37,16 @@ public class CartController {
     @Autowired
     JwtTokenUtil jwtTokenUtil;
 
-
+    @GetMapping("")
     @RolesAllowed("ROLE_CUSTOMER")
-    @GetMapping
-    public ResponseEntity<Cart> getuserCart(@RequestHeader("Authorization")
-                                                    String authorization) {
-        ResponseEntity response;
+    public Set<ProductInCart> listProductsInCart(@RequestHeader("Authorization")
+                                                 String authorization) {
+
         Integer userID = this.getUserID(authorization);
-
         Cart cart = this.cartService.getCart(userID);
-        if (cart == null) {
-            response = new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
-            response = new ResponseEntity<>(HttpStatus.OK);
-        }
-        return response;
-
+        return cart.getProducts();
     }
+
 
 
     /**
@@ -61,15 +57,33 @@ public class CartController {
      * @return
      */
     @PostMapping("/add")
-    @RolesAllowed("{ROLE_CUSTOMER}")
-    public ResponseEntity<?> addItemToCart(
+    @RolesAllowed("ROLE_CUSTOMER")
+    public ResponseEntity<Product> addItemToCart(
             @RequestHeader("Authorization") String authorization,
             @RequestBody AddItemToCardDTO requestBody) {
 
         int userID = this.getUserID(authorization);
         this.cartService.addProductToCart(userID,requestBody.createProduct());
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
+    @DeleteMapping
+    @RolesAllowed("ROLE_CUSTOMER")
+    public ResponseEntity<?> deleteProductFromCart(
+            @RequestHeader("Authorization") String authorization,
+            @RequestBody DeleteFromCartDTO requestBody) {
+        int userID = this.getUserID(authorization);
+        ResponseEntity<?> response;
+        try {
+            this.cartService.removeItemFromCart(userID,requestBody.getCartitemID());
+            response = new ResponseEntity<>(HttpStatus.OK);
+        } catch (NullPointerException e) {
+            return new ResponseEntity<>("No product with that id found", HttpStatus.NOT_FOUND);
+        }
+        return response;
+    }
+
 
 
     /**
@@ -81,5 +95,7 @@ public class CartController {
         String jwt = jwtHeader.substring(7);
         return jwtTokenUtil.extractUserID(jwt);
     }
+
+
 
 }

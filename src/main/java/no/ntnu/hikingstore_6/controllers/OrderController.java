@@ -48,16 +48,10 @@ public class OrderController {
 
     @PostMapping("/add")
     @CrossOrigin
-    @RolesAllowed("{ROLE_CUSTOMER}")
+    @RolesAllowed("ROLE_CUSTOMER")
     public ResponseEntity<?> addOrder (@RequestHeader("Authorization") String authorization) {
-        try {
-            User user = userService.get(this.getUserID(authorization));
-            orderService.addOrder(user.getCartID());
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("user not found", HttpStatus.BAD_REQUEST);
-        }
+        orderService.addOrder(this.getUserID(authorization));
+        return new ResponseEntity<>(HttpStatus.OK);
 
     }
 

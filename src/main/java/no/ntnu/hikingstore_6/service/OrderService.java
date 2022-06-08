@@ -76,11 +76,11 @@ public class OrderService {
 
     }
 
-    public void addOrder(Integer id) {
+    public void addOrder(Integer userId) {
 
-        Cart cart = shoppingCartService.getCart(id);
         try {
-            User user = userService.get(id);
+            User user = userService.get(userId);
+            Cart cart = user.getCart();
             OrderList orderList = new OrderList();
             orderList.setUser(user);
             orderRepository.save(orderList);

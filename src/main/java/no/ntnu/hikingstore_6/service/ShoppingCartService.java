@@ -59,7 +59,7 @@ public class ShoppingCartService {
 
     public void addProductToCart(Integer userid, Product product) {
         ProductInCart productToAdd;
-        Optional<Product> optionalProduct = this.productRepository.findProductById(product.getId());
+        Optional<Product> optionalProduct = this.productRepository.findById(product.getId());
 
         if(optionalProduct.isPresent() && productInCartRepository.findById(product.getId()).isPresent()) {
             productToAdd = productInCartRepository.findProductInCart(userid,product.getId()).get();

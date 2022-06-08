@@ -1,7 +1,5 @@
-nes (63 sloc) 1.98 KB
-import { getCookie } from "./cookies";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = "http://localhost:8080";
 
 /**
  * Send an api request to the backend
@@ -14,16 +12,9 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
  * @param {*} errorCallback function to be called when request was unsuccessfull,
  * with HTTP response code and response body as parameter
  */
-export function sendApiRequest(
-    method,
-    url,
-    callback,
-    requestBody,
-    errorCallback,
-    fileContent
-) {
+export function sendApiRequest(method, url, callback, requestBody, errorCallback) {
     const request = new XMLHttpRequest();
-    request.onreadystatechange = function () {
+    request.onload = function () {
         if (request.readyState === XMLHttpRequest.DONE) {
             if (request.status === 200) {
                 let responseJson = "";
@@ -32,39 +23,34 @@ export function sendApiRequest(
                 }
                 callback(responseJson);
             } else if (errorCallback) {
-                errorCallback(request.status, request.responseText);
+                errorCallback(request.responseText);
             } else {
                 console.error("Error in API request");
             }
         }
     };
-
-    const fullUrl = API_BASE_URL + url;
-    request.open(method, fullUrl);
-
+    request.open(method, API_BASE_URL + url);
     const jwtToken = getCookie("jwt");
     if (jwtToken) {
         request.setRequestHeader("Authorization", "Bearer " + jwtToken);
     }
-
-    let dataToSend = null;
     if (requestBody) {
         if (method.toLowerCase() !== "get") {
-            request.setRequestHeader("Content-Type", "application/json");
-            dataToSend = JSON.stringify(requestBody);
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify(requestBody));
         } else {
-            console.error("Not allowed to send request data with HTTP GET method");
+            console.error("Trying to send request data with HTTP GET, not allowed!")
+            request.send();
         }
-    } else if (fileContent) {
-        dataToSend = new FormData();
-        for (let i = 0; i < fileContent.length; i++) {
-            dataToSend.append("fileContent", fileContent[i]);
-        }
-    }
-
-    if (dataToSend) {
-        request.send(dataToSend);
     } else {
         request.send();
     }
+}
+
+/**
+ * Redirect browser to given relative URL
+ * @param frontendUrl URL, relative to frontend base URL
+ */
+export function redirectTo(frontendUrl) {
+    window.location = BASE_URL + frontendUrl;
 }

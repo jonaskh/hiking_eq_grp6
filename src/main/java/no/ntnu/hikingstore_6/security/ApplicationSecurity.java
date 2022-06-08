@@ -47,7 +47,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers("/register").permitAll()
 				.antMatchers("/delete/user/{email}").permitAll()
 				.antMatchers("/edit/user/{email}").permitAll()
-				.antMatchers("/users").permitAll()
+				.antMatchers("/users/new").permitAll()
 				.antMatchers("/products").permitAll()
 				.antMatchers("/").permitAll()
 				.antMatchers("/process_register").permitAll()

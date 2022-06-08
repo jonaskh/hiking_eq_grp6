@@ -65,3 +65,32 @@ function deleteCookie(cookieName) {
 function runOnLoad(func) {
     document.addEventListener("DOMContentLoaded", func);
 }
+
+/**
+ * Show an error message for a form
+ * @param errorMessage The error message to show
+ */
+function showFormError(errorMessage) {
+    showFormResult(errorMessage, "error");
+}
+
+/**
+ * Show a success message for a form
+ * @param successMessage The success message to show
+ */
+function showFormSuccess(successMessage) {
+    showFormResult(successMessage, "success");
+}
+
+/**
+ * Show a result message in a form
+ * @param message The message to show
+ * @param resultType Type of the result: error or success
+ */
+function showFormResult(message, resultType) {
+    const resultElement = document.getElementById("result-message");
+    resultElement.classList.add(resultType);
+    resultElement.classList.remove("hidden");
+    resultElement.innerText = message;
+}
+

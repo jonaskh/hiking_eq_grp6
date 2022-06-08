@@ -1,9 +1,10 @@
-
-
 /**
  * Get the currently authenticated user stored in cookie.
  * @returns User object or null if user is not authenticated
  */
+import {sendApiRequest} from "./requests";
+
+
 function getAuthenticatedUser() {
     let user = null;
     const username = getCookie("current_username");
@@ -44,14 +45,14 @@ function isAdmin(user) {
      * @param successCallback Function to call on success
      * @param errorCallback Function to call on error, with resposne text as the parameter
      */
-    function sendAuthenticationRequest(username, password, successCallback, errorCallback) {
+    export function sendAuthenticationRequest(username, password, successCallback, errorCallback) {
         const postData = {
             "username": username,
             "password": password
         };
 
         sendApiRequest(
-            "POST", "/authenticate",
+            "POST", "/auth/login",
             function (jwtResponse) {
                 setCookie("jwt", jwtResponse.jwt);
                 const userData = parseJwtUser(jwtResponse.jwt);

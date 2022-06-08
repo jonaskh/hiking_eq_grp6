@@ -13,7 +13,7 @@ signupButton.addEventListener("click", function(event) {
         "address": document.getElementById("address").value,
         "zipcode": document.getElementById("zipcode").value,
     };
-    sendApiRequest("POST", "/users/new", onSignupSuccess, signupData, onSignupError);
+    sendApiRequest("POST", "/api/signup2", onSignupSuccess, signupData, onSignupError);
 });
 
 /**

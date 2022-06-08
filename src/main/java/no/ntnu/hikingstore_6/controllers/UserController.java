@@ -1,5 +1,6 @@
 package no.ntnu.hikingstore_6.controllers;
 
+import no.ntnu.hikingstore_6.dtos.NewUserDTO;
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.exceptions.UserNotFoundException;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
@@ -39,12 +40,17 @@ public class UserController {
 
 
 
+
     @PostMapping("/users/new")
     public String showNewForm(Model model) {
         model.addAttribute("user",new User());
         model.addAttribute("pageTitle", "Add New User");
         return "user_form";
     }
+
+
+
+
 
     @PostMapping("/users/save")
     public String saveUser(User user, RedirectAttributes ra){

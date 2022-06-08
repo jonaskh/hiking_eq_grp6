@@ -1,5 +1,8 @@
 // Login-form related stuff
 
+import {redirectTo} from "./requests";
+import {sendAuthenticationRequest} from "./authentication";
+
 const loginFormButton = document.getElementById("login-form-button");
 if (loginFormButton) {
     loginFormButton.addEventListener("click", submitLoginForm);

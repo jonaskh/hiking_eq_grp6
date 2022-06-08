@@ -1,6 +1,7 @@
 package no.ntnu.hikingstore_6.service;
 
 
+import no.ntnu.hikingstore_6.dtos.AddItemToCardDTO;
 import no.ntnu.hikingstore_6.entities.Cart;
 import no.ntnu.hikingstore_6.entities.Product;
 import no.ntnu.hikingstore_6.entities.ProductInCart;
@@ -48,7 +49,7 @@ public class ShoppingCartService {
         return cart;
     }
 
-    public void addProductToCart(Integer userid, Product product) {
+    public void addProductToCart(Integer userid, AddItemToCardDTO addItemToCardDTO) {
         ProductInCart productToAdd;
         Optional<ProductInCart> optionalProduct = this.productInCartRepository.findProductInCart(this.getCartID(userid),product.getId());
 

@@ -23,8 +23,6 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @Autowired
-    private UserRepository userRepo;
 
     @Autowired
     private UserService userService;
@@ -39,34 +37,7 @@ public class UserController {
 
 
 
-    @PostMapping("/users/new")
-    public String showNewForm(Model model) {
-        model.addAttribute("user",new User());
-        model.addAttribute("pageTitle", "Add New User");
-        return "user_form";
-    }
 
-    @PostMapping("/users/save")
-    public String saveUser(User user, RedirectAttributes ra){
-        service.save(user);
-        ra.addFlashAttribute("message", "the user has been saved");
-        return "redirect:/users";
-
-    }
-
-    @GetMapping("/users/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
-        try {
-            User user = service.get(id);
-            model.addAttribute("user", user);
-            model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
-
-            return "user_form";
-        } catch (UserNotFoundException e) {
-            ra.addFlashAttribute("message", e.getMessage());
-            return "redirect:/users";
-        }
-    }
     @GetMapping("/users/delete/{email}")
     public String showEditForm(@PathVariable("email") String email, RedirectAttributes ra) {
         try {
@@ -78,16 +49,6 @@ public class UserController {
         return "redirect:/users";
 
     }
-
-    /*@PostMapping("/register")
-    public ResponseEntity<User> save(@RequestBody User user) {
-        try {
-            User newUser = userService.save(user);
-            return  new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }*/
 
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
@@ -107,6 +68,15 @@ public class UserController {
     }
 
 
+    @GetMapping("/login")
+    public String showLoginForm(Model model) {
+        model.addAttribute("user", new User());
+
+
+        return "login_form";
+    }
+
+
     @DeleteMapping("/delete/user/{email}")
     @RolesAllowed("ROLE_ADMIN")
     public ResponseEntity<User> delete(@PathVariable("email") String email) throws UserNotFoundException {
@@ -115,31 +85,6 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-
-    @PutMapping("/edit/user/{email}")
-    @RolesAllowed("ROLE_ADMIN")
-    public ResponseEntity<User> update(@PathVariable("email") String email, @Valid @RequestBody User user) throws UserNotFoundException {
-
-        if (!email.equals(user.getEmail())){
-            return ResponseEntity.badRequest().body(user);
-        }
-
-        userService.update(user);
-
-        return ResponseEntity.ok().build();
-    }
-
-
-    /*@PostMapping("/process_register")
-    public String processRegister(User user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
-
-        userRepo.save(user);
-
-        return "register_success";
-    }*/
 
 
 

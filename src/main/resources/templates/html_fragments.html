@@ -9,8 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/productcards.css">
-    <link rel="script" href="js/bootstrap.js">
-    <link rel="script" href="js/index.js">
+    <link rel="stylesheet" href="css/Register">
     <script src="https://kit.fontawesome.com/b5b9b297fc.js" crossorigin="anonymous"></script>
 
 
@@ -19,7 +18,7 @@
 <header th:fragment="header">
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: forestgreen;">
         <div class="container">
-            <a class="navbar-brand" href="/" style="color: black">XXS</a>
+            <a class="navbar-brand" href="/" style="color: black" size="12px">XXS</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -53,63 +52,10 @@
 
 
 
-                    <button class="btn btn-outline-success" onclick="document.getElementById('login-modal').style.display='block'">Login</button>
-                    <div id="login-modal" class="modal">
-                <span onclick="document.getElementById('login-modal').style.display='none'"
-                      class="close" title="Close Modal">&times;</span>
-                        <form class="modal-content">
-
-                            <div class="container" id="modal-container1" style="background-color:#f1f1f1">
-                                <div class="imgcontainer" >
-                                    <img src="Images/user-login-avatar-11929.png" height="512" width="512" alt="avatar" class="Avatar"/>
-                                </div>
-                                <label for="login-username"><b>Username</b></label>
-                                <input type="text" id="login-username" placeholder="Enter Username" name="username" required>
-                                <label for="login-password"><b>Password</b></label>
-                                <input type="password" id="login-password" placeholder="Enter Password" name="password" required>
-                                <button id="login-button" type="submit">Login</button>
-                                <label>
-                                    <input type="checkbox" checked="none" name="remember"> Remember me
-                                </label>
-                                <div id="result-message" hidden>Inner text</div>
-                                <label><br><br>Not registered? Try to sign up</label>
-                                <button onclick="document.getElementById('signup-modal').style.display='block'; document.getElementById('login-modal').style.display='none'" >Sign Up</button>
-                                <div class="login-container">
-                                    <button type="button" onclick="document.getElementById('login-modal').style.display='none'" class="cancelbtn">Cancel</button>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-                    <div id="signup-modal" class="modal">
-                        <span onclick="document.getElementById('signup-modal').style.display='none'" class="close" title="Close Modal">x</span>
-                        <form class="modal-content" action="/action_page.php">
-                            <div class="container" id="modal-container2">
-                                <h1>Sign Up</h1>
-                                <p>Please fill in this form to create an account.</p>
-                                <hr>
-                                <label for="signup-username"><b>Username</b></label>
-                                <input type="text" placeholder="Enter username" name="username" id="signup-username" required>
-                                <label for="signup-username"><b>Password</b></label>
-                                <input type="password" placeholder="Enter Password" name="psw" required>
-                                <label for="signup-password"><b>Repeat Password</b></label>
-                                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="signup-password" required>
-                                <label>
-                                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-                                </label>
-                                <div class="clearfix">
-                                    <button type="button" onclick="document.getElementById('signup-modal').style.display='none'" class="cancelbtn">Cancel</button>
-                                    <button type="submit" class="signup" id="signup-button">Sign Up</button>
-                                </div>
-                                <label><br><br>Already registered? Try to login</label>
-                                <button onclick="document.getElementById('login-modal').style.display='block'; document.getElementById('signup-modal').style.display='none'" >Login</button>
+                    <button class="btn btn-outline-success"><a th:href="@{/login}" style="color: white">Login</a></button>
 
 
-                            </div>
-                        </form>
-                    </div>
-                    <a class="btn btn-default" href="/bootstrapWebsite/shoppingCart.html" role="button"><i class="fa fa-shopping-cart" style="color: white;"></i></a>
+                    <a class="btn btn-default" href="" role="button"><i class="fa fa-shopping-cart" style="color: white;"></i></a>
 
                 </form>
             </div>

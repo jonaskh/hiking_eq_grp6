@@ -35,6 +35,7 @@ public class UserService {
 
     @Transactional
     public User save(User user) {
+
         //register
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         try {

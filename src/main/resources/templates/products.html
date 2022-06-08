@@ -16,12 +16,13 @@
 
 
             <section class="product_container">
-                <div class="card" style="width: 18rem;">
+                <div id="product_card" class="card" style="width: 18rem;">
                     <img class="card-img-top" th:src="${product.productImage}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">[[${product.productName}]]</h5>
                         <p class="card-text">[[${product.productDesc}]]</p>
                         <a th:href="@{'/products/productCards/' + ${product.id}}" class="btn btn-primary">Go somewhere</a>
+
                     </div>
                 </div>
             </section>

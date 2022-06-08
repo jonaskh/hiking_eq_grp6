@@ -8,6 +8,7 @@ import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.repositories.CartRepository;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
+import no.ntnu.hikingstore_6.repositories.ProductRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,9 @@ public class ShoppingCartService {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    ProductRepository productRepository;
+
 
     private int getUserId(User user)  {
         return user.getId();
@@ -49,12 +53,12 @@ public class ShoppingCartService {
         return cart;
     }
 
-    public void addProductToCart(Integer userid, AddItemToCardDTO addItemToCardDTO) {
+    public void addProductToCart(Integer userid, Product product) {
         ProductInCart productToAdd;
-        Optional<ProductInCart> optionalProduct = this.productInCartRepository.findProductInCart(this.getCartID(userid),product.getId());
+        Optional<Product> optionalProduct = this.productRepository.findProductById(product.getId());
 
-        if(optionalProduct.isPresent()) {
-            productToAdd = optionalProduct.get();
+        if(optionalProduct.isPresent() && productInCartRepository.findById(product.getId()).isPresent()) {
+            productToAdd = productInCartRepository.findProductInCart(userid,product.getId()).get();
             productToAdd.incrementAmount();
             this.productInCartRepository.save(productToAdd);
         } else {

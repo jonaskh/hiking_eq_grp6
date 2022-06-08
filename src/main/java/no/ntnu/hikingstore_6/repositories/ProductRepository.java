@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
     Integer countById(Integer id);
-    Product findProductById(Integer id);
+    Optional<Product> findProductById(Integer id);
 
 }

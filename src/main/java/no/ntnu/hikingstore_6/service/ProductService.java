@@ -41,18 +41,27 @@ public class ProductService {
 
     @Transactional
     public void increaseAmount(int productId, int amount) throws ProductNotFoundException {
-        Product product = productRepository.findProductById(productId);
-        if (product == null) throw new ProductNotFoundException("Product not found");
+        Product product;
+        Optional<Product> optProduct = productRepository.findProductById(productId);
+        if (optProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product not found");
+        } else {
+            product = optProduct.get();
 
-        int update = product.getProductAmount() + amount;
-        product.setProductAmount(update);
-        productRepository.save(product);
+            int update = product.getProductAmount() + amount;
+            product.setProductAmount(update);
+            productRepository.save(product);
+        }
     }
 
     @Transactional
     public void decreaseAmount(int productId, int amount) throws ProductNotFoundException {
-        Product product = productRepository.findProductById(productId);
-        if (product == null) throw new ProductNotFoundException("Product not found");
+        Optional<Product> optProduct = productRepository.findProductById(productId);
+        Product product;
+        if (optProduct.isEmpty()) {
+            throw new ProductNotFoundException("Product not found");
+        }
+        product = optProduct.get();
         if (product.getProductAmount() <= 0) throw new ProductNotFoundException("Product out of stock");
 
         int update = product.getProductAmount() - amount;

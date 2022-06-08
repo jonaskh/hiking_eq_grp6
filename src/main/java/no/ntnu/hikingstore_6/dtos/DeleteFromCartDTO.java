@@ -14,21 +14,27 @@ public class DeleteFromCartDTO {
     ProductService productService;
 
     public DeleteFromCartDTO (int cartitemID) {
+
         this.cartitemID = cartitemID;
     }
 
+    public DeleteFromCartDTO() {
+
+    }
+
     public int getCartitemID() {
+
         return this.cartitemID;
     }
 
     public void setCartitemID(int cartitemID) {
+
         this.cartitemID = cartitemID;
     }
 
     private Product findProduct(int productID) {
         Product product = new Product();
         try {
-            ;
             product = productService.get(productID);
 
         } catch (ProductNotFoundException e) {

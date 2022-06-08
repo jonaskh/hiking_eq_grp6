@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.Optional;
 import java.util.Set;
 
 @RequestMapping("/api/cart")
@@ -74,15 +75,22 @@ public class CartController {
             @RequestHeader("Authorization") String authorization,
             @RequestBody DeleteFromCartDTO requestBody) {
         int userID = this.getUserID(authorization);
+
+        Optional<ProductInCart> foundProduct = productInCartRepository.findById(requestBody.getCartitemID());
         ResponseEntity<?> response;
-        try {
-            this.cartService.removeItemFromCart(userID,requestBody.getCartitemID());
-            response = new ResponseEntity<>(HttpStatus.OK);
-        } catch (NullPointerException e) {
-            return new ResponseEntity<>("No product with that id found", HttpStatus.NOT_FOUND);
+        if (foundProduct.isPresent()) {
+            try {
+                this.cartService.removeItemFromCart(userID,requestBody.getCartitemID());
+                response = new ResponseEntity<>(HttpStatus.OK);
+            } catch (NullPointerException e) {
+                return new ResponseEntity<>("No product with that id found", HttpStatus.NOT_FOUND);
+            }
+        } else {
+            response = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return response;
     }
+
 
 
 

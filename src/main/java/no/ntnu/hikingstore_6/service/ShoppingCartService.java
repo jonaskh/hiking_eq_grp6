@@ -34,12 +34,13 @@ public class ShoppingCartService {
     ProductRepository productRepository;
 
 
-    private int getUserId(User user)  {
+    private int getUserId(User user) {
         return user.getId();
     }
 
     /**
      * Finds user ID and then the cart id that belongs to that user, and returns the cart.
+     *
      * @param id
      * @return
      */
@@ -57,8 +58,8 @@ public class ShoppingCartService {
         ProductInCart productToAdd;
         Optional<Product> optionalProduct = this.productRepository.findProductById(product.getId());
 
-        if(optionalProduct.isPresent() && productInCartRepository.findById(product.getId()).isPresent()) {
-            productToAdd = productInCartRepository.findProductInCart(userid,product.getId()).get();
+        if (optionalProduct.isPresent() && productInCartRepository.findById(product.getId()).isPresent()) {
+            productToAdd = productInCartRepository.findProductInCart(userid, product.getId()).get();
             productToAdd.incrementAmount();
             this.productInCartRepository.save(productToAdd);
         } else {
@@ -73,18 +74,16 @@ public class ShoppingCartService {
     }
 
     public void removeItemFromCart(int userId, int cartItemId) {
-        Optional<ProductInCart> result = this.productInCartRepository.findById(cartItemId);
+        Optional<ProductInCart> result = productInCartRepository.findById(cartItemId);
+        ProductInCart cartItem;
         if (result.isPresent()) {
-            ProductInCart cartItem = result.get();
-                cartItem.decreaseAmount();
-                this.productInCartRepository.save(cartItem);
-                this.productInCartRepository.delete(cartItem);
-                Cart cart = this.getCart(userId);
-                cart.removeProduct(cartItem);
-                this.cartRepository.save(cart);
-            }
+            cartItem = result.get();
+            cartItem.setCart(null);
+            productInCartRepository.delete(cartItem);
+            Cart cart = this.getCart(userId);
+            cart.removeProduct(cartItem);
         }
-
+    }
 
 
     public Integer getCartID(Integer userID) {

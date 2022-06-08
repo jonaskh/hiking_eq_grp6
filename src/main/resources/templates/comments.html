@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Comment area</title>
+    <link rel="stylesheet" href="../static/css/commentStyle.css" />
+</head>
+<body>
+
+<div class="container">
+    <h2>Leave Us a Comment</h2>
+    <form>
+        <textarea placeholder='Add Your Comment'></textarea>
+        <div class="btn">
+            <input type="submit" value='Comment'>
+            <button id='clear' href='#'>Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div><h3>See what others think</h3></div>
+
+
+<th:block th:each="comment : ${listComments}">
+
+    <div>
+        <h4>Product: [[${comment.product.productName}]]</h4>
+        <h5>[[${comment.user.email}]]</h5>
+
+        <p>[[${comment.commentContent}]]</p>
+    </div>
+
+</th:block>
+
+
+</body>
+</html>

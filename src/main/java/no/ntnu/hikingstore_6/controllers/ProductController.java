@@ -28,9 +28,24 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping("/products")
-    public String showUserList(Model model) {
+    public String showProductList(Model model) {
         List<Product> listProducts = service.listAll();
         model.addAttribute("listProducts", listProducts);
+        return "products";
+    }
+
+
+    @GetMapping("/products/{product_category}")
+    public String showProductsByCategory(@PathVariable("product_category") String category,Model model) {
+        List<Product> listProducts = service.listAllByCategory(category);
+        model.addAttribute("listProductsByCategory", listProducts);
+        return "products";
+    }
+
+    @GetMapping("/products/{product_name}")
+    public String showProductsByName(@PathVariable("product_name") String name, Model model) {
+        List<Product> listProducts = service.listAllByName(name);
+        model.addAttribute("listProductsByName", listProducts);
         return "products";
     }
 
@@ -42,7 +57,7 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public String saveUser(Product product, RedirectAttributes ra){
+    public String saveProduct(Product product, RedirectAttributes ra){
         service.save(product);
         ra.addFlashAttribute("message", "the product has been saved");
         return "redirect:/products";
@@ -50,6 +65,7 @@ public class ProductController {
     }
 
     @GetMapping("/products/edit/{id}")
+    @RolesAllowed({"ROLE_ADMIN"})
     public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
         try {
             Product product = service.get(id);
@@ -63,6 +79,7 @@ public class ProductController {
         }
     }
     @GetMapping("/products/delete/{id}")
+    @RolesAllowed({"ROLE_ADMIN"})
     public String showEditForm(@PathVariable("id") Integer id, RedirectAttributes ra) {
         try {
             service.delete(id);
@@ -72,6 +89,21 @@ public class ProductController {
         }
         return "redirect:/products";
 
+    }
+
+
+    @GetMapping("/products/productCards/{id}")
+    public String showSingleProduct(@PathVariable("id") Integer id, Model model, RedirectAttributes ra) {
+        try {
+            Product product = service.get(id);
+            model.addAttribute("product", product);
+
+            return "productCards";
+
+        } catch (ProductNotFoundException e) {
+            ra.addFlashAttribute("message", e.getMessage());
+            return "redirect:/products";
+        }
     }
 
     @GetMapping("/test")

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html_header">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XXS</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/productcards.css">
+    <link rel="stylesheet" href="css/Register">
+    <script src="https://kit.fontawesome.com/b5b9b297fc.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: forestgreen;">
+        <div class="container">
+            <a class="navbar-brand" href="/" style="color: black" size="12px">XXS</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DAME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HERRE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HUND</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TILBEHØR</a>
+                    </li>
+
+                </ul>
+
+
+
+                <form class="d-flex">
+                    <input
+                            class="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+
+
+
+
+                    <button class="btn btn-outline-success"><a th:href="@{/login}" style="color: white">Login</a></button>
+
+
+                    <a class="btn btn-default" href="" role="button"><i class="fa fa-shopping-cart" style="color: white;"></i></a>
+
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<footer th:fragment="footer" class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+        <span class="text-muted">Copyrights
+            <a href="https://gr06.web-tek.ninja/">
+                XXS.no
+            </a></span>
+    </div>
+</footer>
+</body>
+</html>

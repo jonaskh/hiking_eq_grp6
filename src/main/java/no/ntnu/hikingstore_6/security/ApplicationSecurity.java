@@ -44,6 +44,7 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 				.antMatchers("/auth/login").permitAll()
+				.antMatchers("/login").permitAll()
 				.antMatchers("/register").permitAll()
 				.antMatchers("/delete/user/{email}").permitAll()
 				.antMatchers("/edit/user/{email}").permitAll()
@@ -52,6 +53,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter {
 				.antMatchers("/").permitAll()
 				.antMatchers("/process_register").permitAll()
 				.antMatchers("/api/signup2").permitAll()
+				.antMatchers("/comments/save").permitAll()
+				.antMatchers("/products/new").permitAll()
+				.antMatchers("/products/save").permitAll()
+				.antMatchers("/products/productCards/{id}").permitAll()
+				.antMatchers("/Image/*").permitAll()
+				.antMatchers("/css/*").permitAll()
+				.antMatchers("/js/*").permitAll()
 				.anyRequest().authenticated();
 
         

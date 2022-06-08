@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Integer> {
-    public List<Comment> findByProduct(Product product);
+    public List<Comment> findByProduct_Id(Integer productId);
 
 }

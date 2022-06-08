@@ -8,10 +8,7 @@ import no.ntnu.hikingstore_6.entities.ProductInOrder;
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.exceptions.ProductNotFoundException;
 import no.ntnu.hikingstore_6.exceptions.UserNotFoundException;
-import no.ntnu.hikingstore_6.repositories.OrderRepository;
-import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
-import no.ntnu.hikingstore_6.repositories.ProductRepository;
-import no.ntnu.hikingstore_6.repositories.UserRepository;
+import no.ntnu.hikingstore_6.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +32,7 @@ public class OrderService {
     ProductService productService;
 
     @Autowired
-    ProductInCartRepository productInOrderRepository;
+    ProductInOrderRepository productInOrderRepository;
 
     @Autowired
     ProductInCartRepository productInCartRepository;
@@ -60,7 +57,7 @@ public class OrderService {
         //orderRepository.save(orderList);
 
         // Restore Stock
-        Iterable<ProductInCart> products = orderList.getCart().getProducts();
+        Iterable<ProductInCart> products = orderList.getUser().getCart().getProducts();
         for(ProductInCart productInCart : products) {
             Optional<Product> optionalProduct = productRepository.findById(productInCart.getProductId());
             if(optionalProduct.isPresent()) {
@@ -83,19 +80,23 @@ public class OrderService {
             Cart cart = user.getCart();
             OrderList orderList = new OrderList();
             orderList.setUser(user);
+            orderList.setOrderStatus(OrderList.OrderStatus.SENT);
             orderRepository.save(orderList);
             float totalPrice = 0;
 
-            for (ProductInCart productInCart : cart.getProducts()) {
+            if (!cart.getProducts().isEmpty()) {
+                for (ProductInCart productInCart : cart.getProducts()) {
 
-                ProductInOrder productInOrder = new ProductInOrder(productInCart);
-                productInOrder.setOrderList(orderList);
-                orderRepository.save(orderList);
+                    ProductInOrder productInOrder = new ProductInOrder(productInCart);
+                    productInOrder.setOrderList(orderList);
+                    productInOrderRepository.save(productInOrder);
 
+                    orderList.addOrderItem(productInOrder);
+                    productInCartRepository.delete(productInCart);
+                    productInCart.setCart(null);
+                    cart.removeProduct(productInCart);
 
-                orderList.addOrderItem(productInOrder);
-                productInCartRepository.delete(productInCart);
-
+                }
             }
 
             orderList.setTotalOrderPrice();

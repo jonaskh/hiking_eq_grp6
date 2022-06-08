@@ -4,11 +4,13 @@ package no.ntnu.hikingstore_6.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -20,44 +22,34 @@ public class OrderList  {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer orderId;
 
-
-    /*
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "order")
-    private Set<ProductInCart> products = new HashSet<>();
-
-     */
-
-
     @ManyToOne()
     @JoinColumn(name = "user_id")
     @JsonIgnore
     private User user;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    private Cart cart = new Cart();
 
     // Relation to order item
     @Column(name = "order_items_id")
     @OneToMany(mappedBy = "orderList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProductInOrder> orderItems = new LinkedHashSet<>();
 
-
-    @Column(nullable = false, name = "total_order_price")
+    @Column(nullable = true, name = "total_order_price")
     private BigDecimal totalOrderPrice;
-
-
 
     @Column(nullable = false, name = "order_status")
     private OrderStatus orderStatus;
 
-    private final LocalDateTime createTime;
 
-    public OrderList() {
+
+
+
+/*    public OrderList() {
 
         this.orderStatus = OrderStatus.SENT;
         createTime = LocalDateTime.now();
+    }*/
+
+    public OrderList() {
+
     }
 
     public void addOrderItem(ProductInOrder productInOrder) {
@@ -65,8 +57,8 @@ public class OrderList  {
     }
 
     public void setTotalOrderPrice() {
-        this.totalOrderPrice = cart.getProducts().stream().map(item ->
-                new BigDecimal(item.getPrice()).multiply(new BigDecimal(item.getPrice())))
+        this.totalOrderPrice = user.getCart().getProducts().stream().map(item ->
+                new BigDecimal(item.getPrice()).multiply(new BigDecimal(item.getProductAmount())))
                 .reduce(BigDecimal::add).orElse(new BigDecimal((0)));
     }
 
@@ -79,9 +71,6 @@ public class OrderList  {
         this.user = user;
     }
 
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
@@ -91,13 +80,6 @@ public class OrderList  {
         this.orderStatus = orderStatus;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
 
     /*
     public Set<ProductInCart> getProducts() {

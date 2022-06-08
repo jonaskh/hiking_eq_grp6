@@ -1,4 +1,5 @@
 package no.ntnu.hikingstore_6.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
@@ -37,6 +38,9 @@ public class User implements UserDetails {
 	@Column(nullable = false, length = 100)
 	private String address;
 
+	@OneToMany(mappedBy = "user")
+	@JsonIgnore
+	private Set<OrderList> orders = new LinkedHashSet<>();
 
     /*
     User relation to the role table that determines the roles of the user.
@@ -65,7 +69,9 @@ public class User implements UserDetails {
 		this.address = address;
 	}
 
-
+	public void addOrder(OrderList orderList) {
+		orders.add(orderList);
+	}
 
 	//---------------------------------------------------------------------------------
 	//------------------------GETTERS AND SETTERS...-----------------------------------

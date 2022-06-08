@@ -2,17 +2,18 @@ package no.ntnu.hikingstore_6.entities;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orderlist")
 public class OrderList  {
 
     @Id
@@ -28,18 +29,19 @@ public class OrderList  {
 
      */
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "orderList")
+
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    @OneToOne(fetch = FetchType.LAZY)
     private Cart cart = new Cart();
 
-
-    @Column(nullable = false, name = "user_email")
-    private String userEmail;
-
-    @Column(nullable = false, name = "user_address")
-    private String userAddress;
-
-    @Column(nullable = false, name = "user_zipcode")
-    private Integer userZipCode;
+    // Relation to order item
+    @Column(name = "order_items_id")
+    @OneToMany(mappedBy = "orderList", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<ProductInOrder> orderItems = new LinkedHashSet<>();
 
 
     @Column(nullable = false, name = "total_order_price")
@@ -50,25 +52,35 @@ public class OrderList  {
     @Column(nullable = false, name = "order_status")
     private OrderStatus orderStatus;
 
-    @CreationTimestamp
-    private LocalDateTime createTime;
-
-    public OrderList(User user) {
-        this.userEmail = user.getEmail();
-        this.userAddress = user.getAddress();
-        this.userZipCode = user.getZipcode();
-        this.totalOrderPrice = cart.getProducts().stream().map(item ->
-                new BigDecimal(item.getPrice()).multiply(new BigDecimal(item.getPrice())))
-                .reduce(BigDecimal::add).orElse(new BigDecimal((0)));
-        this.orderStatus = OrderStatus.SENT;
-    }
+    private final LocalDateTime createTime;
 
     public OrderList() {
 
+        this.orderStatus = OrderStatus.SENT;
+        createTime = LocalDateTime.now();
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public void addOrderItem(ProductInOrder productInOrder) {
+        orderItems.add(productInOrder);
+    }
+
+    public void setTotalOrderPrice() {
+        this.totalOrderPrice = cart.getProducts().stream().map(item ->
+                new BigDecimal(item.getPrice()).multiply(new BigDecimal(item.getPrice())))
+                .reduce(BigDecimal::add).orElse(new BigDecimal((0)));
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 
     public OrderStatus getOrderStatus() {

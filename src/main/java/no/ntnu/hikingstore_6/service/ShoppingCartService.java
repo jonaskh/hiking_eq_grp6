@@ -2,14 +2,18 @@ package no.ntnu.hikingstore_6.service;
 
 
 import no.ntnu.hikingstore_6.entities.Cart;
+import no.ntnu.hikingstore_6.entities.OrderList;
 import no.ntnu.hikingstore_6.entities.Product;
 import no.ntnu.hikingstore_6.entities.ProductInCart;
 import no.ntnu.hikingstore_6.entities.User;
+import no.ntnu.hikingstore_6.exceptions.ProductNotFoundException;
 import no.ntnu.hikingstore_6.repositories.CartRepository;
+import no.ntnu.hikingstore_6.repositories.OrderRepository;
 import no.ntnu.hikingstore_6.repositories.ProductInCartRepository;
 import no.ntnu.hikingstore_6.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -73,5 +77,7 @@ public class ShoppingCartService {
 
         return this.userRepository.findCartID(userID);
     }
+
+
 
 }

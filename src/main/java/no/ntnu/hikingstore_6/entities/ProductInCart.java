@@ -1,5 +1,7 @@
 package no.ntnu.hikingstore_6.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -24,6 +26,11 @@ public class ProductInCart {
 
     @Column(nullable = false, name = "product_id")
     private int productId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    @JsonIgnore
+    private OrderList orderList;
 
     @Column(nullable = false)
     private int price;
@@ -62,6 +69,18 @@ public class ProductInCart {
     /*
     --------------------------------------GETTERS AND SETTERS------------------------------------------------------------
      */
+
+    public Integer getId() {
+        return id;
+    }
+
+    public OrderList getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(OrderList orderList) {
+        this.orderList = orderList;
+    }
 
     public Cart getCart() {
         return this.cart;

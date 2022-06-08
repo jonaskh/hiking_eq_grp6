@@ -2,9 +2,13 @@ package no.ntnu.hikingstore_6.repositories;
 
 import no.ntnu.hikingstore_6.entities.Product;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
+@Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
-    public Long countById(Integer id);
+    public Integer countById(Integer id);
 
-    Product findByProductId(Integer id);
+    Optional<Product> findById(Integer id);
 }

@@ -1,6 +1,6 @@
 package no.ntnu.hikingstore_6.repositories;
 
-import no.ntnu.hikingstore_6.entities.CartItem;
+import no.ntnu.hikingstore_6.entities.Cart;
 import no.ntnu.hikingstore_6.entities.OrderList;
 import no.ntnu.hikingstore_6.entities.User;
 import org.aspectj.weaver.ast.Or;
@@ -13,11 +13,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends CrudRepository<CartItem, Integer> {
+public interface OrderRepository extends CrudRepository<OrderList, Integer> {
 
-    public List<CartItem> findByUser(User user);
+    public List<OrderList> findByUser(User user);
 
-    OrderList findOne(Integer id);
+    OrderList findByOrderId(Integer id);
 
     //List<OrderList> findAllByOrderStatusOrderByCreateTimeDesc(OrderList.OrderStatus orderStatus);
 

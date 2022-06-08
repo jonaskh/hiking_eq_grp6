@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html_header">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XXS</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="script" href="js/bootstrap.js">
+    <link rel="script" href="js/index.js">
+    <script src="https://kit.fontawesome.com/b5b9b297fc.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: forestgreen;">
+        <div class="container">
+            <a class="navbar-brand" href="/bootstrapWebsite/index.html" style="color: black">XXS</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">DAME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HERRE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HUND</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">TILBEHØR</a>
+                    </li>
+
+                </ul>
+
+
+
+                <form class="d-flex">
+                    <input
+                            class="form-control me-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                    />
+                    <button class="btn btn-outline-success" type="submit">
+                        Search
+                    </button>
+
+
+
+
+                    <button class="btn btn-outline-success" onclick="document.getElementById('login-modal').style.display='block'">Login</button>
+                    <div id="login-modal" class="modal">
+                <span onclick="document.getElementById('login-modal').style.display='none'"
+                      class="close" title="Close Modal">&times;</span>
+                        <form class="modal-content">
+
+                            <div class="container" id="modal-container1" style="background-color:#f1f1f1">
+                                <div class="imgcontainer" >
+                                    <img src="Images/user-login-avatar-11929.png" height="512" width="512" alt="avatar" class="Avatar"/>
+                                </div>
+                                <label for="login-username"><b>Username</b></label>
+                                <input type="text" id="login-username" placeholder="Enter Username" name="username" required>
+                                <label for="login-password"><b>Password</b></label>
+                                <input type="password" id="login-password" placeholder="Enter Password" name="password" required>
+                                <button id="login-button" type="submit">Login</button>
+                                <label>
+                                    <input type="checkbox" checked="none" name="remember"> Remember me
+                                </label>
+                                <div id="result-message" hidden>Inner text</div>
+                                <label><br><br>Not registered? Try to sign up</label>
+                                <button onclick="document.getElementById('signup-modal').style.display='block'; document.getElementById('login-modal').style.display='none'" >Sign Up</button>
+                                <div class="login-container">
+                                    <button type="button" onclick="document.getElementById('login-modal').style.display='none'" class="cancelbtn">Cancel</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <div id="signup-modal" class="modal">
+                        <span onclick="document.getElementById('signup-modal').style.display='none'" class="close" title="Close Modal">x</span>
+                        <form class="modal-content" action="/action_page.php">
+                            <div class="container" id="modal-container2">
+                                <h1>Sign Up</h1>
+                                <p>Please fill in this form to create an account.</p>
+                                <hr>
+                                <label for="signup-username"><b>Username</b></label>
+                                <input type="text" placeholder="Enter username" name="username" id="signup-username" required>
+                                <label for="signup-username"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" required>
+                                <label for="signup-password"><b>Repeat Password</b></label>
+                                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="signup-password" required>
+                                <label>
+                                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                                </label>
+                                <div class="clearfix">
+                                    <button type="button" onclick="document.getElementById('signup-modal').style.display='none'" class="cancelbtn">Cancel</button>
+                                    <button type="submit" class="signup" id="signup-button">Sign Up</button>
+                                </div>
+                                <label><br><br>Already registered? Try to login</label>
+                                <button onclick="document.getElementById('login-modal').style.display='block'; document.getElementById('signup-modal').style.display='none'" >Login</button>
+
+
+                            </div>
+                        </form>
+                    </div>
+                    <a class="btn btn-default" href="/bootstrapWebsite/shoppingCart.html" role="button"><i class="fa fa-shopping-cart" style="color: white;"></i></a>
+
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+
+<footer th:fragment="footer" class="footer mt-auto py-3 bg-dark">
+    <div class="container">
+        <span class="text-muted">Copyrights
+            <a href="https://gr06.web-tek.ninja/">
+                XXS.no
+            </a></span>
+    </div>
+</footer>
+</body>
+</html>

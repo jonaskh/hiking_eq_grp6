@@ -2,6 +2,7 @@ package no.ntnu.hikingstore_6.service;
 
 
 import no.ntnu.hikingstore_6.entities.Comment;
+import no.ntnu.hikingstore_6.entities.Product;
 import no.ntnu.hikingstore_6.exceptions.CommentNotFoundException;
 import no.ntnu.hikingstore_6.repositories.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,8 @@ public class CommentService {
             repo.save(comment);
         }
 
-        public Comment get(Integer id) throws CommentNotFoundException {
-            Optional<Comment> result = repo.findById(id);
-            if ( result.isPresent()) {
-                return result.get();
-            }
-            throw new CommentNotFoundException("Could not be find any users with ID " + id);
-
+        public List<Comment> getCommentByProductId(Product product) throws CommentNotFoundException {
+            return repo.findByProduct_Id(product.getId());
         }
 
     public void delete(Integer id) {

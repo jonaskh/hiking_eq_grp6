@@ -118,7 +118,11 @@ public class UserController {
 
     @PutMapping("/edit/user/{email}")
     @RolesAllowed("ROLE_ADMIN")
-    public ResponseEntity update(@PathVariable("email") String email, @Valid @RequestBody User user) throws UserNotFoundException {
+    public ResponseEntity<User> update(@PathVariable("email") String email, @Valid @RequestBody User user) throws UserNotFoundException {
+
+        if (!email.equals(user.getEmail())){
+            return ResponseEntity.badRequest().body(user);
+        }
 
         userService.update(user);
 

@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en" xmlns:th="http://www.thymeleaf.org">
-        <head>
-        <meta charset="UTF-8">
-        <title>Manage products</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-    <link rel = "stylesheet"  href = "../css/style.css" />
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="html_fragments :: html_header">
+    Standard header
 </head>
 <body>
+<header th:replace="html_fragments :: header">
+    General header
+</header>
+
+
+
+
+
+
+
 <div class="container-fluid text-center">
     <div><h2>Manage products</h2></div>
     <div class="m-2">
@@ -55,25 +58,26 @@
 
 
 
+            <section class="product_container">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" th:src="${product.productImage}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">[[${product.productName}]]</h5>
                         <p class="card-text">[[${product.productDesc}]]</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a th:href="@{'/products/productCards/' + ${product.id}}" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
+            </section>
 
         </th:block>
 
 
 
     </div>
-</div>
-</body>
-</html></title>
-</head>
-<body>
 
+
+<footer th:replace="html_fragments :: footer">
+    Just a footer
+</footer>
 </body>
 </html>

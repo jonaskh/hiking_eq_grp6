@@ -3,6 +3,8 @@ package no.ntnu.hikingstore_6.controllers;
 
 
 import no.ntnu.hikingstore_6.entities.Comment;
+import no.ntnu.hikingstore_6.entities.Product;
+import no.ntnu.hikingstore_6.exceptions.CommentNotFoundException;
 import no.ntnu.hikingstore_6.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,12 @@ public class CommentController {
         return "comments";
     }
 
+    /*@GetMapping("")
+    public String showCommentsByProductId(@PathVariable("product_id") Product product, Model model) throws CommentNotFoundException {
+        List<Comment> listComments = service.getCommentByProductId(product);
+
+        return "comments";
+    }*/
 
 
     @PostMapping("/comments/save")
@@ -37,10 +45,8 @@ public class CommentController {
 
     }
 
-
-
     @GetMapping("/comments/delete/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, RedirectAttributes ra) {
+    public String deleteComment(@PathVariable("id") Integer id, RedirectAttributes ra) {
         service.delete(id);
         ra.addFlashAttribute("message","Comment has been deleted");
         return "redirect:/comments";

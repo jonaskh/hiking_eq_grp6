@@ -1,6 +1,5 @@
 package no.ntnu.hikingstore_6.service;
 
-import no.ntnu.hikingstore_6.entities.Cart;
 import no.ntnu.hikingstore_6.entities.Role;
 import no.ntnu.hikingstore_6.entities.User;
 import no.ntnu.hikingstore_6.exceptions.UserNotFoundException;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -51,7 +49,7 @@ public class UserService {
         }
     }
 
-    public User update(User user) throws UserNotFoundException {
+    public void update(User user) throws UserNotFoundException {
         Optional<User> result = userRepository.findByEmail(user.getEmail());
 
         if (result.isEmpty()){
@@ -66,7 +64,7 @@ public class UserService {
 
         updatedUser.setZipcode(user.getZipcode());
 
-        return userRepository.save(updatedUser);
+        userRepository.save(updatedUser);
 
     }
 

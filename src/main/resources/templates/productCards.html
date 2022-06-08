@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product card for a spesific product</title>
+    <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+
+
+<main class="container">
+
+    <!-- Left column containing images -->
+    <div class="left-column">
+        <img class="active" th:src="${product.productImage}" src="./Images/Sweaters/greySweatshirt700.jpg" th:alt="${product.productDesc}">
+    </div>
+
+    <!-- Right column containing color/size/price -->
+    <div class="right-column">
+
+        <!-- Product headline -->
+        <div class="product-headline">
+            <span>[[${product.productCategory}]]</span>
+            <h1>[[${product.productName}]]</h1>
+        </div>
+
+        <!-- Contains the product options like color/size -->
+        <div class="product-configuration">
+
+            <!-- Contains the products color options -->
+            <div class="product-color">
+                <span>Color</span>
+
+                <div class="choose-color">
+                    <div>
+                        <input data-image="Grey" type="radio" id="Grey" name="color" value="Grey" checked>
+                        <label for="Grey"><span></span></label>
+                    </div>
+
+                    <div>
+                        <input data-image="White" type="radio" id="White" name="color" value="White">
+                        <label for="White"><span></span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contains the products size options -->
+            <div class="product-size">
+                <span>Size</span>
+
+                <div class="choose-size">
+                    <div>
+                        <input data-image="XS" type="radio" id="XS" name="size" value="XS" checked>
+                        <label for="XS"><span><p>XS</p></span></label>
+                    </div>
+                    <div>
+                        <input data-image="S" type="radio" id="S" name="size" value="S">
+                        <label for="S"><span><p>S</p></span></label>
+                    </div>
+                    <div>
+                        <input data-image="M" type="radio" id="M" name="size" value="M">
+                        <label for="M"><span><p>M</p></span></label>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="product-price">
+            <span>[[${product.price}]]kr</span>
+            <form>
+                <button id="CartButton" class = 'cart-button'>Add to cart</button>
+            </form>
+        </div>
+
+
+
+    </div>
+
+
+    <div class="container">
+        <h2>Leave Us a Comment</h2>
+        <form>
+            <textarea placeholder='Add Your Comment'></textarea>
+            <div class="btn">
+                <input type="submit" value='Comment'>
+                <button id='clear' href='#'>Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div><h3>See what others think</h3></div>
+
+
+    <th:block  th:each="comment : ${listComments}">
+
+        <div>
+            <h4>Product: [[${comment.product.productName}]]</h4>
+            <h5>[[${comment.user.email}]]</h5>
+
+            <p>[[${comment.commentContent}]]</p>
+        </div>
+
+    </th:block>
+
+</main>
+
+
+</body>
+</html>

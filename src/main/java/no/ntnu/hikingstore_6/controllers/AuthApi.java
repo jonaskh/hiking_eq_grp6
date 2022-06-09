@@ -22,7 +22,11 @@ import no.ntnu.hikingstore_6.entities.User;
 public class AuthApi {
 	@Autowired AuthenticationManager authManager;
 	@Autowired JwtTokenUtil jwtUtil;
-	
+
+
+	/*
+	WHen logging in, get sent here to verify user exists in databasemm and return the jwt containing user roles and user id.
+	 */
 	@PostMapping("/auth/login")
 	public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
 		try {

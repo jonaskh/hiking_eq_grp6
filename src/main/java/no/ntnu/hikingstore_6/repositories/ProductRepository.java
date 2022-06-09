@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Integer> {
     public Integer countById(Integer id);
-    
+
     Optional<Product> findById(Integer id);
 
     @Query(value = "SELECT * FROM products WHERE product_name = ?", nativeQuery = true)

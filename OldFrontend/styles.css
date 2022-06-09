@@ -8,15 +8,13 @@
 }
 
 html {
-    background: #ece9e6;
-    background-image: linear-gradient(to top, #ffa054 0%, #b2c8ee 100%);
+        background: floralwhite;
 }
 
 
 /* || NAVBAR */
 
 .navbar {
-    margin-top: -2rem;
     margin-bottom: 1rem;
     background-color: forestgreen;
     height: 5rem;

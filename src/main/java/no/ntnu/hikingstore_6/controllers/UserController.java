@@ -45,7 +45,7 @@ public class UserController {
 
 
     @PostMapping("/process_register")
-    public String processRegister(User user) {
+    public String processRegister(@RequestBody User user) {
 
 
         userService.save(user);
@@ -55,11 +55,11 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public String showLoginForm(Model model) {
+    public String showLoginForm( Model model) {
         model.addAttribute("user", new User());
 
 
-        return "login_form";
+        return "sign_in";
     }
 
 

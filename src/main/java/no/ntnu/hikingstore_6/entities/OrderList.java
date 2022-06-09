@@ -56,6 +56,9 @@ public class OrderList  {
         orderItems.add(productInOrder);
     }
 
+    /*
+    Calculates the sum total of the products added to the order.
+     */
     public void setTotalOrderPrice() {
         this.totalOrderPrice = user.getCart().getProducts().stream().map(item ->
                 new BigDecimal(item.getPrice()).multiply(new BigDecimal(item.getProductAmount())))
@@ -82,15 +85,7 @@ public class OrderList  {
 
 
     /*
-    public Set<ProductInCart> getProducts() {
-        return products;
-    }
-
-
-
-    public void setProducts(Set<ProductInCart> products) {
-        this.products = products;
-    }
+    Order is set to sent by default when created, but admin can go in and cancel the order.
      */
 
     public enum OrderStatus {

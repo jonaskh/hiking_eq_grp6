@@ -59,7 +59,7 @@ public class UserController {
         model.addAttribute("user", new User());
 
 
-        return "sign_in";
+        return "login_form";
     }
 
 

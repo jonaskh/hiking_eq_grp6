@@ -4231,7 +4231,6 @@ textarea.form-control-lg {
 
   #navbarSupportedContent {
     display: flex;
-    background: aliceblue;
     justify-content: space-around;
   }
   .navbar-expand-lg .navbar-toggler {

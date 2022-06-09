@@ -128,6 +128,4 @@ public class ProductController {
         return ResponseEntity.created(productURI).body(savedProduct);
     }
 
-
-
 }
